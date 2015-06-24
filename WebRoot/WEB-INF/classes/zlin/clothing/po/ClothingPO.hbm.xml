@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="zlin.clothing.po.ClothingPO" table="clothing" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="clothnum" type="string">
+			<column name="clothnum" length="255" not-null="true" />		
+		</property>
+		
+		<property name="type" type="string">
+			<column name="type" length="255" not-null="true" />
+		</property>
+		
+		<property name="color" type="string">
+			<column name="color" length="255" not-null="true" />
+		</property>	
+		
+		<property name="size" type="string">
+			<column name="size" length="255" not-null="true" />
+		</property>
+		
+		<property name="fabric" type="string">
+			<column name="fabric" length="255" not-null="true" />
+		</property>
+		
+		<property name="clothingMaterial" type="string">
+			<column name="clothingMaterial" length="255" not-null="true" />
+		</property>
+		
+		<property name="factoryPrice" type="string">
+			<column name="factoryPrice" length="255" not-null="true" />
+		</property>
+		
+		<property name="retailPrice" type="string">
+			<column name="retailPrice" length="255" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

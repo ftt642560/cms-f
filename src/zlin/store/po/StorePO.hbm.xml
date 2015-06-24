@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="zlin.store.po.StorePO" table="store" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="storenum" type="string">
+			<column name="storenum" length="255" not-null="true" />		
+		</property>
+		
+		<property name="storename" type="string">
+			<column name="storename" length="255" not-null="true" />
+		</property>
+		
+		<property name="linkman" type="string">
+			<column name="linkman" length="255" not-null="true" />
+		</property>	
+		
+		<property name="tele" type="string">
+			<column name="tele" length="255" not-null="true" />
+		</property>
+		
+		<property name="storagevolume" type="string">
+			<column name="storagevolume" length="255" not-null="true" />
+		</property>
+		
+		
+		
+	</class>
+</hibernate-mapping>

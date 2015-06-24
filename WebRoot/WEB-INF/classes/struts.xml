@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+ 	     "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+ 	     "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 	     
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" /> 	
+	
+	<constant name="struts.objectFactory" value="spring"/>
+	<include file="struts-default.xml" />
+	
+	<!-- 货号管理模块 -->
+	<package name="zlinclothing" extends="struts-default" namespace="/zlinclothing">
+		<!-- 查询全部的货号信息 -->
+		<action name="findallclothing" class="findallclothing" method="findAllClothing">
+			<result name="success">/system/CLOTHING1001.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		
+		<!-- 查找货号 -->
+		<action name="findclothing" class="findclothing" method="findClothing">
+			<result name="success">/system/CLOTHING1001.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		
+		<!-- 新建货号 -->
+		<action name="newclothing" class="newclothing" method="newClothing">
+			<result name="success" type="redirect-action">findallclothing.action</result>
+			
+		</action>
+		
+		
+		<!-- 删除货号 -->
+		<action name="deleteclothing" class="deleteclothing" method="deleteClothing">
+			<result name="success" type="redirect-action">findallclothing.action</result>
+		</action>
+		
+		<!-- 查找一个clothingpo，用于更新货号 -->
+		<action name="findaclothing" class="findaclothing" method="findAClothing">
+			<result name="success">/system/CLOTHING1002.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>	
+			
+		</action>
+		
+		
+		
+		<!-- 更新货号,存储信息 -->
+		<action name="updateclothing" class="updateclothing" method="updateClothing">
+			<result name="success" type="redirect-action">findallclothing.action</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>	
+		</action>
+		
+		<!-- 返回列表的时候，清空session中的clothingpo对象 -->
+		<action name="cleandatainsession" class="cleandatainsession" method="cleanDataInSession">
+			<result name="success" type="redirect-action">findallclothing.action</result>
+		</action>
+	</package>
+	
+	
+	
+	<!-- 仓库管理模块 -->
+	<package name="zlinstore" extends="struts-default" namespace="/zlinstore">
+		<!-- 查找全部的仓库信息 -->
+		<action name="findallstore" class="findallstore" method="findAllStore">
+			<result name="success">/system/bsd_code_006.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		
+		
+		<!-- 按条件查找仓库信息 -->
+		<action name="findstore" class="findstore" method="findStore">
+			<result name="success">/system/bsd_code_006.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		
+		<!-- 新建一个仓库信息 -->
+		<action name="newstore" class="newstore" method="newStore">
+			<result name="success" type="redirect-action">findallstore.action</result>
+		</action>
+		
+		<!-- 删除一个仓库 -->
+		<action name="deletestore" class="deletestore" method="deleteStore">
+			<result name="success" type="redirect-action">findallstore.action</result>
+		</action>
+		
+		<!-- 按照ID号，查找一个仓库信息 -->
+		<action name="findastore" class="findastore" method="findAStore">
+			<result name="success">/system/bsd_code_006_1.jsp</result>
+		</action>
+		
+		<!-- 更新仓库信息 -->
+		<action name="updatestore" class="updatestore" method="updateStore">
+			<result name="success" type="redirect-action">findallstore.action</result>
+		</action>
+		
+		<!-- 清理在session中的storepo -->
+		<action name="cleanstoreinsession" class="cleanstoreinsession" method="cleanStoreInSession">
+			<result name="success" type="redirect-action">findallstore.action</result>
+		</action>
+	</package>
+	
+	<package name="hjh_orderin" extends="struts-default" namespace="/hjh">
+	    <action name="query_orderin_action" class="queryOrderInAction">
+	          <result name="success">/stock/order2001.jsp</result>
+	          <result name="error">/error.jsp</result>
+	    </action>
+	    <action name="delete_orderin_action" class="deleteOrderInAction">
+	          <result name="success" type="redirectAction">
+	          <param name="actionName"> query_orderin_action</param>
+	          <param name="receiptsNumber2">${receiptsNumber}</param>
+	          <param name="inDepot">${inDepot}</param>
+	          <param name="dateStart">${dateStart}</param>
+	          <param name="dateEnd">${dateEnd}</param>
+	          <param name="firstPage">${firstPage}</param>
+	         </result>
+	          <result name="error">/error.jsp</result>
+	          <result name="input">/error.jsp</result>
+	    </action>
+	    
+	    <action name="get_orderinpage_action" class="getAddOrderInPageAction">
+	          <result name="success">/stock/order2002.jsp</result>
+	          <result name="error">/error.jsp</result>
+	    </action>
+	    <action name="add_orderin_action" class="addOrderInAction">
+	          <result name="success" type="redirectAction">
+	              <param name="actionName">query_orderin_action</param>
+	              <param name="receiptsNumber2">${justInsertId}</param>
+	          </result>
+	          <result name="error">/error.jsp</result>
+	    </action>
+	    
+	    <action name="get_orderin_action" class="getOrderInAction">
+	        <result name="success">/stock/order2002_2.jsp</result>
+	        <result name="error">/error.jsp</result>
+	    </action>
+	    
+	    <action name="update_orderin_action" class="updateOrderInAction">
+	       <result name="success" type="redirectAction">
+	        <param name="actionName">query_orderin_action</param>
+	        <param name="receiptsNumber2">${receiptsNumber}</param>
+	       </result>
+	        <result name="error">/error.jsp</result>
+	    </action>
+	    <action name="add_orderindetail_action" class="addOrderInDetailAction">
+	       <result name="success">/stock/order2003.jsp</result>
+	       <result name="login" type="redirectAction">
+	       	   <param name="actionName">get_orderin_action</param>
+	           <param name="orderInId">${inOrderId}</param>  
+	         </result>
+	        <result name="error">/error.jsp</result>
+	    </action>
+	</package>
+	
+	<package name="ftt" extends="json-default" namespace="/outOrder">
+		<action name="findAll" class="outOrderAction" method="findAll">
+			<result name="findAll">/stock/order3001.jsp</result>
+		</action>
+		
+		<action name="findAllStore" class="outOrderAction" method="findAllStore">
+			<result name="findAllStore">/stock/order3002.jsp</result>
+		</action>
+		
+		<action name="findPart" class="outOrderAction" method="findPart">
+			<result name="findPart">/stock/order3001.jsp</result>
+		</action>
+		
+		<action name="del" class="outOrderAction" method="delete">
+			<result type="json" name="delete">
+		        <param name="root">result</param>
+		    </result>
+		</action>
+		
+		<action name="getOrderByOutNo" class="outOrderAction" method="getOrderByOutNo">
+			<result type="json" name="success">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<action name="outOrderSave" class="outOrderAction" method="save">
+			
+			<result type="stream" name="update">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		     
+		     <result type="json" name="save">
+		     	<param name="root">result</param>
+		     </result> 
+		</action>
+		
+	</package>
+	
+	<package name="fttDetail" extends="json-default" namespace="/outOrderDetail">
+		<action name="findAllCloth" class="outOrderDetailAction" method="findAllCloth">
+			<result name="findAllCloth">/stock/order3003.jsp</result>
+		</action>
+		
+		<action name="save" class="outOrderDetailAction" method="save">
+			<result type="json" name="save">
+		     	<param name="root">result</param>
+		    </result> 
+		</action>
+		
+		<action name="delete" class="outOrderDetailAction" method="deleteDetail">
+			<result type="stream" name="deleteDetail">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		</action>
+	</package>
+	
+	<package name="ldmUser"  extends="json-default" namespace="/">
+		
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="userListSuc" type="json">
+				<param name="includeProperties">pagerBean.*,searchFlag</param>
+			</result>
+			<result name="userOpr" type="json">
+				<param name="includeProperties">result</param>
+			</result>
+		</action>
+		
+		</package>
+
+</struts>

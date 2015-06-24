@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="hjh.orderin.domain.InOrderDetail" table="inorderdetail" lazy="false">
+		<id name="inorderdetail_id" column="inorderdetail_id" type="long">
+			<generator class="increment"></generator>
+		</id>
+
+		<!--  <property name="receiptsNumberFK" column="receiptsNumberFK" type="long"></property>-->
+		<property name="articleNumber" column="articleNumber" type="string"></property>
+		<property name="type" column="type" type="string"></property>
+		<property name="color" column="color" type="string"></property>
+		<property name="size" column="size" type="string"></property>
+		<property name="count" column="count" type="int"></property>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+/* stylesheet for ProjectPump v2.0 */
+/* 背景色和对齐方式有两位数字【xx】表示，
+	第一个数字表示颜色系， 0白色，1红色，2橙色，3黄色，4绿色，5青色，6蓝色，7紫色，8灰色，9黑色，x无背景色
+	第二个数字表示对齐方式， 1,居左对齐，2，居中对齐，3，居右对齐 */
+table {word-break:break-all}
+td.textbartemp {color:#000000;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 无背景色居左对齐的文字 */
+td.textbar1 {color:#000000;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 无背景色居左对齐的文字 */
+td.textbar2 {color:#000000;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 无背景色居中对齐的文字 */
+td.textbar3 {color:#000000;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 无背景色居右对齐的文字 */
+td.textbar4 {color:#000000;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居左对齐的标题 */
+td.textbar01 {color:#000000;background:#FFFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居左对齐的文字 */
+td.textbar02 {color:#000000;background:#FFFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居中对齐的文字 */
+td.textbar03 {color:#000000;background:#FFFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居右对齐的文字 */
+td.textbar11 {color:#000000;background:#FFFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居左对齐的文字 */
+td.textbar12 {color:#000000;background:#FFFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居中对齐的文字 */
+td.textbar13 {color:#000000;background:#FFFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居右对齐的文字 */
+td.textbar21 {color:#000000;background:#FFFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居左对齐的文字 */
+td.textbar22 {color:#000000;background:#FFFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居中对齐的文字 */
+td.textbar23 {color:#000000;background:#FFFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 白背景色居右对齐的文字 */
+td.textbar31 {color:#000000;background:#FFFFCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 黄背景色居左对齐的文字 */
+td.textbar32 {color:#000000;background:#FFFFCC;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 黄背景色居中对齐的文字 */
+td.textbar33 {color:#000000;background:#FFFFCC;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 黄背景色居右对齐的文字 */
+td.textbar41 {color:#000000;background:#CCFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 绿背景色居左对齐的文字 */
+td.textbar42 {color:#000000;background:#CCFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 绿背景色居中对齐的文字 */
+td.textbar43 {color:#000000;background:#CCFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 绿背景色居右对齐的文字 */
+td.textbar51 {color:#000000;background:#CCFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 青背景色居左对齐的文字 */
+td.textbar52 {color:#000000;background:#CCFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 青背景色居中对齐的文字 */
+td.textbar53 {color:#000000;background:#CCFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 青背景色居右对齐的文字 */
+td.textbar61 {color:#000000;background:#6699FF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居左对齐的标题 */
+td.textbar62 {color:#000000;background:#6699FF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居中对齐的标题 */
+td.textbar63 {color:#000000;background:#6699FF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居右对齐的标题 */
+td.textbar81 {color:#000000;background:#CCCCCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 灰背景色居左对齐的文字 */
+td.textbar82 {color:#000000;background:#CCCCCC;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 灰背景色居中对齐的文字 */
+td.textbar83 {color:#000000;background:#CCCCCC;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 灰背景色居右对齐的文字 */
+td.headerbar01 {color:#000000;background:#FFFFFF;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 白背景色居左对齐的标题 */
+td.headerbar02 {color:#000000;background:#FFFFFF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 白背景色居中对齐的标题 */
+td.headerbar03 {color:#000000;background:#FFFFFF;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 白背景色居右对齐的标题 */
+td.headerbar31 {color:#000000;background:#FFFFCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 黄背景色居左对齐的标题 */
+td.headerbar32 {color:#000000;background:#FFFFCC;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 黄背景色居中对齐的标题 */
+td.headerbar33 {color:#000000;background:#FFFFCC;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 黄背景色居右对齐的标题 */
+td.headerbar61 {color:#000000;background-image: url(./../image/th.gif);text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居左对齐的标题 */
+td.headerbar62 {color:#000000;background:#6699FF;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居中对齐的标题 */
+td.headerbar63 {color:#000000;background-image: url(./../image/th.gif);text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 蓝背景色居右对齐的标题 */
+td.headerbar81 {color:#000000;background:#CCCCCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 灰背景色居左对齐的标题 */
+td.headerbar82 {color:#000000;background:#CCCCCC;text-align:center;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 灰背景色居中对齐的标题 */
+td.headerbar83 {color:#000000;background:#CCCCCC;text-align:right;font-family:宋体,Verdana,Arial;font-size:9pt;font-weight:bold;line-height:16px;} /* 灰背景色居右对齐的标题 */
+td.menubar1 {font-family:宋体,Verdana,Arial;font-size:9pt;color:#000000;text-align:left;line-height:14px;}
+td.menubar2 {font-family:宋体,Verdana,Arial;font-size:9pt;color:#000000;text-align:center;line-height:14px;}
+td.menubar3 {font-family:宋体,Verdana,Arial;font-size:9pt;color:#000000;text-align:right;line-height:14px;}
+td.gridbar01 {color:#000000;background:#FFFFFF;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* GRID白背景色居左对齐的文字 */
+td.gridbar11 {color:#000000;background:#FFFFCC;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:25px;} /* GRID黄背景色居左对齐的文字 */
+td.plan00 {color:#000000;background:#FFFFFF;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 缺省：       黑色前景，白色背景   */
+td.plan01 {color:#000000;background:#FFCC99;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 等待批准：   黑色前景，淡黄色背景 */
+td.plan02 {color:#000000;background:#99CC99;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 同意的任务： 黑色前景，草绿色背景 */
+td.plan03 {color:#000000;background:#FF9900;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 驳回的任务： 黑色前景，橘黄色背景 */
+td.plan04 {color:#000000;background:#FF6699;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 超期的任务： 白色前景，暗红色背景 */
+td.textbar31 {color:#000000;background:#FFFFCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 黄背景色居左对齐的文字 */
+<!--Customize link style here-->
+a:link {text-decoration:none;}
+a:visited {text-decoration:none;}
+a:hover {text-decoration:underline;cursor:hand;}
+a.folder {font-family:宋体,Verdana,Arial;font-size:9pt;padding:0px;cursor:hand;font-family:cursive;}
+a.leaf {font-family:宋体,Verdana,Arial;padding:0px;cursor:hand;font-size:9pt;}
+<!--人员选择菜单-->
+tr             {height: 20;}
+tr.over        {font-size: 9pt; color: #ffffff; background-color: #000080; cursor: default;}
+tr.out         {font-size: 9pt; color: #000000; background-color: #D4D0C8; cursor: default;}
+div.rm_div     {position: absolute; filter: Alpha(Opacity='95'); display: none; border: 2px outset #ffffff; background-color: #808080; width: 0; height: 0;}
+div.root       {position: absolute; filter: Alpha(Opacity='95'); display: yes;  border: 2px outset #ffffff; background-color: #808080; width: 0; height: 0;}
+hr.sperator    {border: 1px inset #3377aa;}
+<!--计划比对-->
+td.PlanDiffer00 {color:#FF0000;background:#FFFFCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 不同的任务（前景色红色） */
+td.PlanDiffer01 {color:#FF0000;background:#FFFFCC;text-align:left;font-family:宋体,Verdana,Arial;font-size:9pt;line-height:16px;} /* 不同的任务（前景色红色） */

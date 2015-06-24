@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ftt.orderout.domain.OutOrderDetail" table="details">
+        <id name="id" type="long" column="ID">
+            <generator class="native" />
+        </id>
+        <property name="goodsNo" type="string" column="GOODS_NO" not-null="false"/>
+        <property name="brandName" type="string" column="BRAND_NAME" not-null="false"/>
+        <property name="colorName" type="string" column="COLOR_NAME" not-null="false"/>
+        <property name="size" type="string" column="SIZE" not-null="false"/>
+        <property name="number" type="int" column="NUMBER" not-null="false"/>
+    </class>
+</hibernate-mapping>

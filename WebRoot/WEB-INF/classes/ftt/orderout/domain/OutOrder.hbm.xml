@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="ftt.orderout.domain.OutOrder" table="OUT_ORDER">
+        <id name="id" type="long" column="ID" >
+            <generator class="native"  />
+        </id>
+        <property name="outNo" type="string" column="OUT_NO" not-null="false"/>
+        <property name="outDate" type="string" column="OUTDATE" not-null="false"/>
+        <property name="receivePerson" type="string" column="RECEIVE_PERSON" not-null="false"/>
+        <property name="receivePhone" type="long" column="RECEIVE_PHONE" not-null="false"/>
+        <property name="address" type="string" column="ADDRESS" not-null="false"/>
+        <property name="remark" type="string" column="REMARK" not-null="false"/>
+        
+         <!-- 映射单向 n-1 的关联关系 -->
+        <many-to-one name="storePO" class="zlin.store.po.StorePO">
+        	<column name="STORE_ID" not-null="false"/>
+        </many-to-one>
+        
+        <set name="outOrderDetails" cascade="all"  inverse="false" lazy="false" >
+            <key>
+                <column name="OUTORDER_ID"  not-null="false"/>   
+            </key>
+            <one-to-many  class="ftt.orderout.domain.OutOrderDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

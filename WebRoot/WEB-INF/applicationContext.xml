@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!-- 定义数据源： -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/cms?characterEncoding=UTF-8" />
+		<property name="user" value="root" />
+		<property name="password" value="root" />
+		<property name="maxPoolSize" value="100"></property>
+		<property name="minPoolSize" value="1" />
+		<property name="initialPoolSize" value="1" />
+		<property name="maxIdleTime" value="30" />
+	</bean>
+
+
+
+
+	<!-- 定义Hibernate的SessionFactory： -->
+	<bean id="sessionfactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+				hibernate.hbm2ddl.auto=update
+			</value>
+		</property>
+
+		<property name="mappingResources">
+			<list>
+				<value>zlin/clothing/po/ClothingPO.hbm.xml</value>
+				<value>zlin/store/po/StorePO.hbm.xml</value>
+				<value>hjh/orderin/domain/InOrder.hbm.xml</value>
+				<value>hjh/orderin/domain/InOrderDetail.hbm.xml</value>
+				<value>ftt/orderout/domain/OutOrder.hbm.xml</value>
+       			<value>ftt/orderout/domain/OutOrderDetail.hbm.xml</value>
+       			<value>ldm/user/po/User.hbm.xml</value>	
+			</list>
+		</property>
+	</bean>
+
+
+
+
+	<!-- 定义PO： -->
+	<bean id="clothingpo" class="zlin.clothing.po.ClothingPO"></bean>
+	<bean id="storepo" class="zlin.store.po.StorePO"></bean>
+	<bean id="outOrder" class="ftt.orderout.domain.OutOrder"></bean>
+	<bean id="outOrderDetail" class="ftt.orderout.domain.OutOrderDetail"></bean>
+	<bean id="criteriaOutOrder" class="ftt.orderout.domain.util.CriteriaOutOrder"></bean>
+
+	<!-- 定义DAO： -->
+	<bean id="clothingdao" class="zlin.clothing.dao.ClothingDao">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+
+	<bean id="storedao" class="zlin.store.dao.StoreDao">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	
+	<bean id="outOrderDao" class="ftt.orderout.dao.OutOrderDao">
+	  	<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	  
+	<bean id="outOrderDetailDao" class="ftt.orderout.dao.OutOrderDetailDao">
+	  	<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	  
+	  <bean id="outOrderDetailDaoTwo" class="ftt.orderout.dao.OutOrderDetailDaoTwo">
+	  	<property name="sessionFactory" ref="sessionfactory"></property>
+	  </bean>
+
+
+	<!-- 定义业务类： -->
+	<bean id="clothingservice" class="zlin.clothing.service.ClothingService">
+		<property name="clothingdao" ref="clothingdao"></property>
+		<property name="clothingpo" ref="clothingpo"></property>
+	</bean>
+
+	<bean id="storeservice" class="zlin.store.service.StoreService">
+		<property name="storedao" ref="storedao"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+	
+	<bean id="outOrderService" class="ftt.orderout.service.OutOrderService">
+	  	<property name="outOrderDao" ref="outOrderDao"></property>
+	  	<property name="outOrderDetailDao" ref="outOrderDetailDao"></property>
+	  </bean>
+	  
+	  <bean id="createNoService" class="ftt.orderout.service.CreateNoService">
+	  	<property name="outOrderDao" ref="outOrderDao"></property>
+	  </bean>
+	  
+	  <bean id="outOrderDetailService" class="ftt.orderout.service.OutOrderDetailService">
+	  	<property name="outOrderDetailDao" ref="outOrderDetailDao"></property>
+	  	<property name="outOrderDetailDaoTwo" ref="outOrderDetailDaoTwo"></property>
+	  	<property name="clothingDao" ref="clothingdao"></property>
+	  </bean>
+
+	<!-- 以下定义各个Action类： -->
+	<!-- 查询全部的货号信息 -->
+	<bean id="findallclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+	</bean>
+
+	<!-- 查找货号 -->
+	<bean id="findclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+	</bean>
+
+	<!-- 新建货号 -->
+	<bean id="newclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+		<property name="clothingpo" ref="clothingpo"></property>
+	</bean>
+
+	<!-- 删除货号 -->
+	<bean id="deleteclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+	</bean>
+
+	<!-- 查找一个clothingpo，用于更新货号 -->
+	<bean id="findaclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+		<property name="clothingpo" ref="clothingpo"></property>
+	</bean>
+
+	<!-- 更新货号,存储信息 -->
+	<bean id="updateclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+		<property name="clothingpo" ref="clothingpo"></property>
+	</bean>
+
+	<!-- 返回列表的时候，清空session中的clothingpo对象 -->
+	<bean id="cleandatainsession" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+	</bean>
+
+
+	<!-- 查找全部的仓库信息 -->
+	<bean id="findallstore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+	</bean>
+
+	<!-- 按条件查询 -->
+	<bean id="findstore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+	</bean>
+
+	<!-- 新建仓库 -->
+	<bean id="newstore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+
+	<!-- 删除仓库 -->
+	<bean id="deletestore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+
+
+	<!-- 按照ID查找一个仓库 -->
+	<bean id="findastore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+
+	<!-- 更新仓库信息 -->
+	<bean id="updatestore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+
+	<!-- 清理在session中的storepo -->
+	<bean id="cleanstoreinsession" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+<!-- 查询入库单模块 -->
+	<bean id="queryOrderInDAOImpl" class="hjh.orderin.daoimpl.QueryOrderInDAOImpl">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	
+	<bean id="queryOrderInServiceImpl" class="hjh.orderin.serviceimpl.QueryOrderInServiceImpl">
+		<property name="query" ref="queryOrderInDAOImpl"></property>
+	</bean>
+	
+	<bean id="queryRepertories" class="hjh.orderin.daoimpl.QueryRepertoriesDAOImpl">
+	 <property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	
+	<bean id="queryRepertoriesServiceImpl" class="hjh.orderin.serviceimpl.QueryRepertoriesServiceImpl">
+	    <property name="queryRepertoriesDAO" ref="queryRepertories"></property>
+	</bean>
+	
+	<bean id="queryOrderInAction" class="hjh.orderin.action.QueryOrderInAction"
+		scope="prototype">
+		<property name="queryOrderInService" ref="queryOrderInServiceImpl"></property>
+		<property name="queryRepertoriesService" ref="queryRepertoriesServiceImpl"></property>
+	</bean>
+
+<!-- 删除入库单模块 -->
+    <bean id="deleteOrderInDAOImpl" class="hjh.orderin.daoimpl.DeleteOrderInDAOImpl">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	
+	<bean id="deleteOrderInServiceImpl" class="hjh.orderin.serviceimpl.DeleteOrderInServiceImpl">
+		<property name="deleteOrderInDAO" ref="deleteOrderInDAOImpl"></property>
+	</bean>
+	
+	<bean id="deleteOrderInAction" class="hjh.orderin.action.DeleteOrderInAction"
+		scope="prototype">
+		<property name="deleteOrderInService" ref="deleteOrderInServiceImpl"></property>
+	</bean>
+<!-- 添加入库单模块 -->	
+    <bean id="getAddOrderInDAOImpl" class="hjh.orderin.daoimpl.GetAddOrderInDAOImpl">
+        <property name="sessionFactory" ref="sessionfactory"></property>
+    </bean>
+    
+    <bean id="getAddOrderInServiceImpl" class="hjh.orderin.serviceimpl.GetAddOrderInServiceImpl">
+         <property name="getAddOrderInDAO" ref="getAddOrderInDAOImpl"></property>
+    </bean>
+    
+    <bean id="getAddOrderInPageAction" class="hjh.orderin.action.GetAddOrderInPageAction">
+         <property name="getAddOrderInService" ref="getAddOrderInServiceImpl"></property>
+         <property name="queryRepertoriesService" ref="queryRepertoriesServiceImpl"></property>
+    </bean>
+    
+    
+    
+    
+    <bean id="addOrderInDAOImpl" class="hjh.orderin.daoimpl.AddOrderInDAOImpl">
+        <property name="sessionFactory" ref="sessionfactory"></property>
+    </bean>
+    
+    <bean id="addOrderInServiceImpl" class="hjh.orderin.serviceimpl.AddOrderInServiceImpl"
+    scope="prototype">
+        <property name="addOrderInDAO" ref="addOrderInDAOImpl"></property>
+    </bean>
+    
+    <bean id="addOrderInAction" class="hjh.orderin.action.AddOrderInAction" scope="prototype">
+        <property name="addOrderInService" ref="addOrderInServiceImpl"></property>
+    </bean>
+    
+    
+ <!-- 更新入库单模块 -->  
+ <bean id="getOrderInDAOImpl" class="hjh.orderin.daoimpl.GetOrderInDAOImpl">
+ <property name="sessionFactory" ref="sessionfactory"></property>
+ </bean> 
+ 
+ <bean id="getOrderInServiceImpl" class="hjh.orderin.serviceimpl.GetOrderInServiceImpl">
+ <property name="getOrderInDAO" ref="getOrderInDAOImpl"></property>
+ </bean>
+ 
+ <bean id="getOrderInAction" class="hjh.orderin.action.GetOrderInAction" scope="prototype">
+ <property name="getOrderInService" ref="getOrderInServiceImpl"></property>
+ </bean>
+ 
+ <bean id="updateOrderInDAOImpl" class="hjh.orderin.daoimpl.UpdateOrderInDAOImpl">
+  <property name="sessionFactory" ref="sessionfactory"></property>
+ </bean>
+ 
+ <bean id="updateOrderInServiceImpl" class="hjh.orderin.serviceimpl.UpdateOrderInServiceImpl">
+ <property name="updateOrderInDAOImpl" ref="updateOrderInDAOImpl"></property>
+ </bean>
+ 
+ <bean id="updateOrderInAction" class="hjh.orderin.action.UpdateOrderInAction" scope="prototype">
+    <property name="updateOrderInService" ref="updateOrderInServiceImpl"></property>
+ </bean>
+ 
+ 
+ <bean id="addOrderInDetailDAOImpl" class="hjh.orderin.daoimpl.AddOrderInDetailDAOImpl">
+   <property name="sessionFactory" ref="sessionfactory"></property>
+ </bean>
+ <bean id="addOrderInDetailServiceImpl" class="hjh.orderin.serviceimpl.AddOrderInDetailServiceImpl">
+ <property name="addOrderInDetailDAO" ref="addOrderInDetailDAOImpl"></property>
+ </bean>
+ <bean id="addOrderInDetailAction" class="hjh.orderin.action.AddOrderInDetailAction" scope="prototype">
+   <property name="addOrderInDetailService" ref="addOrderInDetailServiceImpl"></property>
+ </bean>
+
+    
+    
+    
+    
+ 
+ <!--出库单模块-->
+	<bean id="outOrderAction" class="ftt.orderout.action.OutOrderAction">
+		<property name="outOrderService" ref="outOrderService"></property>
+		<property name="outOrder" ref="outOrder"></property>
+		<property name="storeService" ref="storeservice"></property>
+		<property name="createNoService" ref="createNoService"></property>
+		<property name="criteriaOutOrder" ref="criteriaOutOrder"></property>
+		<property name="outOrderDetailService" ref="outOrderDetailService"></property>
+	</bean>
+	
+	<bean id="outOrderDetailAction" class="ftt.orderout.action.OutOrderDetailAction">
+		<property name="outOrderDetailService" ref="outOrderDetailService"></property>
+		<property name="outOrderDetail" ref="outOrderDetail"></property>
+		<property name="outOrderService" ref="outOrderService"></property>
+		<property name="outOrder" ref="outOrder"></property>
+	</bean>
+	
+	<!-- ***************************用户模块 start**************************************************************** -->	
+	<bean name="userAction" class="ldm.user.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="userService" class="ldm.user.service.UserIService" scope="singleton">
+		<property name="userDao" ref="userDao"></property>
+		<property name="pagerDao" ref="pagerDao"></property>
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	<bean id="userDao" class="ldm.user.dao.UserIDao" scope="singleton">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+	<bean id="pagerDao" class="ldm.pager.util.PagerIDao" scope="singleton">
+		<property name="sessionFactory" ref="sessionfactory"></property>
+	</bean>
+<!-- ***************************用户模块 end**************************************************************** -->	
+</beans>
+
+
+
+
+
+
+
+
+
+
