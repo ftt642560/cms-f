@@ -148,6 +148,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		
   		
+  		//模糊查询
+		function criterialclothing()
+		{
+		var storenum=document.getElementById("storenum").value;//获取storenum输入框的内容
+  		var storename=document.getElementById("storename").value;//获取storenamae输入框的内容
+		
+			
+			if(storenum=="" && storename=="")
+			{
+				window.location.href="<%=basePath%>/zlinstore/findallstore.action";
+			}
+			
+			else{
+			var targetForm=document.forms[0];
+				//动态修改表单的action属性
+				targetForm.action="zlinstore/criterialstore.action?storenum="+encodeURI(encodeURI(storenum))+
+				"&storename="+encodeURI(encodeURI(storename));
+				//document.forms[0].submit();
+				}
+		}
   	
   		
   </script>
@@ -166,7 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <tr>
 	<td class="headerbar61">仓库查询</td>
     <td class="headerbar63" width="50%" colspan="1"><p align="right">
-    	<input type=submit value=" 查 询 " onClick="return querystore();"></p></td>
+    	<input type=submit value=" 查 询 " onClick="criterialclothing();"></p></td>
   </tr>
 <!-- </tr>-->
 </table>
@@ -359,6 +379,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            		 	<a id="prepage" href="<%=basePath%>/zlinstore/findstore.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
             </s:if>
             
+            <s:if test="#session.storePageFunc=='criterialstore'">
+            		 <a  name="homepage" href="<%=basePath%>/zlinstore/criterialstore.action">首页</a>
+           			&nbsp;&nbsp;&nbsp;
+           		 	<a id="prepage" href="<%=basePath%>/zlinstore/criterialstore.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
+            </s:if>
+            
             
         </s:else>
         
@@ -384,6 +410,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        			 <a id="nextpage" href="<%=basePath%>/zlinstore/findstore.action?page=<s:property value="#session.pageBean.currentPage + 1"/>">下一页</a>
           		  &nbsp;&nbsp;&nbsp;
          		   <a id="lastpage" href="<%=basePath%>/zlinstore/findstore.action?page=<s:property value="#session.pageBean.totalPage"/>">尾页</a>
+       			</s:else>
+       		</s:if>
+       		
+       		
+       		<s:if test="#session.storePageFunc=='criterialstore'">
+       			<s:if test="#session.pageBean.totalPage==0">
+          			  下一页&nbsp;&nbsp;&nbsp;尾页
+          		</s:if>
+          		
+          		<s:else>
+       			 <a id="nextpage" href="<%=basePath%>/zlinstore/criterialstore.action?page=<s:property value="#session.pageBean.currentPage + 1"/>">下一页</a>
+          		  &nbsp;&nbsp;&nbsp;
+         		   <a id="lastpage" href="<%=basePath%>/zlinstore/criterialstore.action?page=<s:property value="#session.pageBean.totalPage"/>">尾页</a>
        			</s:else>
        		</s:if>
        		

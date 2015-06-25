@@ -3,7 +3,6 @@ package ftt.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,28 +22,28 @@ public class TestOutOrderDao {
 	private static OutOrderDao outOrderDao; 
 	private static StoreDao storeDao;
 
-	//初始化方法
+	//鍒濆鍖栨柟娉�
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		outOrderDao = new OutOrderDao();
 		storeDao  = new StoreDao();
 	}
 
-	//收尾方法	 
+	//鏀跺熬鏂规硶	 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 		outOrderDao = null;
 		storeDao = null;
 	}
 
-	//测试获取一条数据
+	//娴嬭瘯鑾峰彇涓�潯鏁版嵁
 	@Test
 	public void testGet() {
 		
 		fail("Not yet implemented");
 	}
 
-	//保存一条数据
+	//淇濆瓨涓�潯鏁版嵁
 	@Test
 	public void testSave() throws Exception {
 		OutOrder outOrder1 = new OutOrder();
@@ -54,33 +53,33 @@ public class TestOutOrderDao {
 		StorePO storePO2 = new StorePO();
 		
 		
-		//测试保存store
-		storePO.setLinkman("张三");
-		storePO.setStorename("一号仓库");
+		//娴嬭瘯淇濆瓨store
+		storePO.setLinkman("寮犱笁");
+		storePO.setStorename("涓�彿浠撳簱");
 		storePO.setStoragevolume("200");
 		storePO.setStorenum("1001");
 		storePO.setTele("110");
 		
-		storeDao.newStore(storePO);//保存store
+		storeDao.newStore(storePO);//淇濆瓨store
 		
 		storePO2.setId(storePO.getId());
 		
 		
 		Set<OutOrderDetail> outOrderDetails = new HashSet<OutOrderDetail>();
-		outOrderDetail1.setBrandName("真维斯");
-		outOrderDetail1.setColorName("白色");
+		outOrderDetail1.setBrandName("鐪熺淮鏂");
+		outOrderDetail1.setColorName("鐧借壊");
 		outOrderDetail1.setGoodsNo("HR0909");
 		outOrderDetail1.setNumber(12);
 		outOrderDetail1.setSize("170");
 		outOrderDetails.add(outOrderDetail1);
 		
 		List<OutOrder> list = new ArrayList<OutOrder>();
-		outOrder1.setAddress("深圳");
+		outOrder1.setAddress("娣卞湷");
 		outOrder1.setOutDate("2015-6-24");
 		outOrder1.setOutNo("whxx627924");
-		outOrder1.setReceivePerson("胖子");
+		outOrder1.setReceivePerson("鑳栧瓙");
 		outOrder1.setReceivePhone((long) 11111111);
-		outOrder1.setRemark("贵重物品");
+		outOrder1.setRemark("璐甸噸鐗╁搧");
 		
 		outOrder1.setStorePO(storePO2);
 		outOrder1.setOutOrderDetails(outOrderDetails);

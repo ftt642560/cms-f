@@ -148,7 +148,7 @@ public class OutOrderDetailAction extends ActionSupport{
 				colorName = colorNames[i];
 				size = sizes[i];
 				id = Long.parseLong(ids[i]);
-				number =(int)Integer.parseInt(numbers[i]) ;
+				number =Integer.parseInt(numbers[i]) ;
 			}
 			
 			outOrderDetail.setBrandName(brandName);

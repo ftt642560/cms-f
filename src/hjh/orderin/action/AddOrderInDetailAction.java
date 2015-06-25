@@ -1,8 +1,6 @@
 package hjh.orderin.action;
 
 import hjh.orderin.service.AddOrderInDetailService;
-import hjh.orderin.service.AddOrderInService;
-
 import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;

@@ -1,12 +1,9 @@
 package hjh.orderin.daoimpl;
 
 import hjh.orderin.dao.GetAddOrderInDAO;
-import hjh.orderin.domain.InOrder;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

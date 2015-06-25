@@ -10,7 +10,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-import zlin.clothing.po.ClothingPO;
 import zlin.store.dao.StoreDao;
 import zlin.store.po.StorePO;
 
@@ -60,7 +59,7 @@ public class TestStoreDao {
 	@Test
 	public void testFindAllStore() {
 		//fail("Not yet implemented");
-		List resultlist = (List) new ArrayList<StorePO>();
+		List resultlist = new ArrayList<StorePO>();
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2009");
 		storepo1.setStorename("���ʲֿ�");
@@ -79,7 +78,7 @@ public class TestStoreDao {
 		{
 			storedao.newStore(storepo1);
 			storedao.newStore(storepo2);
-			resultlist=(List) storedao.findAllStore(0, 10);
+			resultlist=storedao.findAllStore(0, 10);
 			assertNotNull(resultlist);
 			
 		}catch(Exception e)
@@ -93,7 +92,7 @@ public class TestStoreDao {
 	@Test
 	public void testFindStore() {
 		//fail("Not yet implemented");
-		List resultlist=(List) new ArrayList<StorePO>();
+		List resultlist=new ArrayList<StorePO>();
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2011");
 		storepo1.setStorename("���ʲֿ�");
@@ -104,7 +103,7 @@ public class TestStoreDao {
 	
 		try{
 			Long id=storedao.newStore(storepo1);
-			resultlist=(List) storedao.findStore("2009", "���ʲֿ�", 0, 10);
+			resultlist=storedao.findStore("2009", "���ʲֿ�", 0, 10);
 			assertNotNull(resultlist);
 		}catch(Exception e)
 		{

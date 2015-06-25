@@ -20,15 +20,16 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 		this.pagerDao = pagerDao;
 	}
 
+	@Override
 	public PagerBean queryForPage(int pageSize, int page,String hql,int allRow) {
 		
-		//int	allRow = pageDao.getAllRowCount(tableName,findCon);//×Ü¼ÇÂ¼Êý
-		int totalPage = PagerBean.countTotalPage(pageSize, allRow);//×ÜÒ³Êý
-		final int offset = PagerBean.countOffset(pageSize, page);//µ±Ç°Ò³¿ªÊ¼¼ÇÂ¼
-		final int length = pageSize;//Ã¿Ò³¼ÇÂ¼Êý
+		//int	allRow = pageDao.getAllRowCount(tableName,findCon);//ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
+		int totalPage = PagerBean.countTotalPage(pageSize, allRow);//ï¿½ï¿½Ò³ï¿½ï¿½
+		final int offset = PagerBean.countOffset(pageSize, page);//ï¿½ï¿½Ç°Ò³ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
+		final int length = pageSize;//Ã¿Ò³ï¿½ï¿½Â¼ï¿½ï¿½
 		final int currentPage = PagerBean.countCurrentPage(page);
-		List list = queryForPage(hql, offset, length);//"Ò»Ò³"µÄ¼ÇÂ¼
-		//°Ñ·ÖÒ³ÐÅÏ¢±£´æµ½BeanÖÐ
+		List list = queryForPage(hql, offset, length);//"Ò»Ò³"ï¿½Ä¼ï¿½Â¼
+		//ï¿½Ñ·ï¿½Ò³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½æµ½Beanï¿½ï¿½
 		PagerBean pageBean = new PagerBean();
 		pageBean.setPageSize(pageSize);
 		pageBean.setCurrentPage(currentPage);
@@ -39,14 +40,15 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 		return pageBean;
 	}
 	
+	@Override
 	public PagerBean findByPage(int pageSize, int page, String hql,int allRow, Object[] values) {
 		
-		int totalPage = PagerBean.countTotalPage(pageSize, allRow);//×ÜÒ³Êý
-		final int offset = PagerBean.countOffset(pageSize, page);//µ±Ç°Ò³¿ªÊ¼¼ÇÂ¼
-		final int length = pageSize;//Ã¿Ò³¼ÇÂ¼Êý
+		int totalPage = PagerBean.countTotalPage(pageSize, allRow);//ï¿½ï¿½Ò³ï¿½ï¿½
+		final int offset = PagerBean.countOffset(pageSize, page);//ï¿½ï¿½Ç°Ò³ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
+		final int length = pageSize;//Ã¿Ò³ï¿½ï¿½Â¼ï¿½ï¿½
 		final int currentPage = PagerBean.countCurrentPage(page);
-		List list = findByPage(hql, values, offset, length);//"Ò»Ò³"µÄ¼ÇÂ¼
-		//°Ñ·ÖÒ³ÐÅÏ¢±£´æµ½BeanÖÐ
+		List list = findByPage(hql, values, offset, length);//"Ò»Ò³"ï¿½Ä¼ï¿½Â¼
+		//ï¿½Ñ·ï¿½Ò³ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½æµ½Beanï¿½ï¿½
 		PagerBean pageBean = new PagerBean();
 		pageBean.setPageSize(pageSize);
 		pageBean.setCurrentPage(currentPage);
@@ -57,6 +59,7 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 		return pageBean;
 	}
 	
+	@Override
 	public int getAllRowCount(String tableName,String findCon) {
 		String Hql = "";
 		if(findCon!=null)
@@ -69,6 +72,7 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 	
 	public List queryForPage(final String hql,final int offset,final int length){
 		List list = getHibernateTemplate().executeFind(new HibernateCallback(){
+		@Override
 		public Object doInHibernate(Session session) throws HibernateException,SQLException{
 		Query query = session.createQuery(hql);
 		query.setFirstResult(offset);
@@ -82,17 +86,18 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 	}
 	
 	public List findByPage(final String hql, final Object[] values, final int offset, final int length) {
-		//Í¨¹ýÒ»¸öHibernateCallback¶ÔÏóÀ´Ö´ÐÐ²éÑ¯
+		//Í¨ï¿½ï¿½Ò»ï¿½ï¿½HibernateCallbackï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð²ï¿½Ñ¯
 		List list = getHibernateTemplate()
 			.executeFind(new HibernateCallback()
 		{
-			//ÊµÏÖHibernateCallback½Ó¿Ú±ØÐëÊµÏÖµÄ·½·¨
+			//Êµï¿½ï¿½HibernateCallbackï¿½Ó¿Ú±ï¿½ï¿½ï¿½Êµï¿½ÖµÄ·ï¿½ï¿½ï¿½
+			@Override
 			public Object doInHibernate(Session session)
 				throws HibernateException, SQLException
 			{
-				//Ö´ÐÐHibernate·ÖÒ³²éÑ¯
+				//Ö´ï¿½ï¿½Hibernateï¿½ï¿½Ò³ï¿½ï¿½Ñ¯
 				Query query = session.createQuery(hql);
-				//ÎªhqlÓï¾ä´«Èë²ÎÊý
+				//Îªhqlï¿½ï¿½ä´«ï¿½ï¿½ï¿½ï¿½ï¿½
 				for (int i = 0 ; i < values.length ; i++)
 				{
 					query.setParameter( i, values[i]);
@@ -106,7 +111,7 @@ public class PagerIDao extends HibernateDaoSupport implements PagerDao{
 		return list;
 	}
 	
-	//½«µ¥¡¢¶à±í²éÑ¯¡¾·ÇÌõ¼þ²éÑ¯¡¿¹²ÓÃ·½·¨ºÏ²¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½Ï²ï¿½
 	public int oneManyTableRow(String queryString){
 		Session session=null;
 		try{

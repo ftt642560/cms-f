@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		
   		//查询货号之前，先对输入的条件进行验证
   		function queryclothing()
-  		{
+  		{ 		
   			var clothnum=document.getElementById("clothnum").value;//获取clothnum输入框的内容
   			var type=document.getElementById("type").value;//获取type输入框的内容
 		
@@ -192,7 +192,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}	
   		}
   		
+  		//模糊查询
+		function criterialclothing()
+		{
+			var clothnum=document.getElementById("clothnum").value;//获取clothnum输入框的内容
+  			var type=document.getElementById("type").value;//获取type输入框的内容
 		
+			//获取色号选择框的内容
+  			var selectcolor = document.getElementById("color"); //selectid
+			var colorindex = selectcolor.selectedIndex; // 选中索引
+			var colortext = selectcolor.options[colorindex].text; // 选中文本
+			
+			//获取大小选择框的内容
+			var selectsize = document.getElementById("size");
+			var sizeindex = selectsize.selectedIndex;
+			var sizetext = selectsize.options[sizeindex].text;
+			
+			if(clothnum=="" && type=="" && colortext=="请选择" && sizetext=="请选择")
+			{
+				window.location.href="<%=basePath%>/zlinclothing/findallclothing.action";
+			}
+			
+			
+			if(colortext=="请选择")
+			{
+				colortext="";
+			}
+			
+			if(sizetext=="请选择")
+			{
+				sizetext="";
+			}
+			
+			var targetForm=document.forms[0];
+				//动态修改表单的action属性
+				targetForm.action="zlinclothing/criterialclothing.action?clothnum="+clothnum+
+				"&type="+encodeURI(encodeURI(type))+"&color="+encodeURI(encodeURI(colortext))+"&size="+sizetext;
+				//document.forms[0].submit();
+		}
 		
   </script>
   
@@ -205,7 +242,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<td class="headerbar61">货号查询</td>
     <td class="headerbar63" width="50%" colspan="1"><p align="right">
 
-    	<input type=submit value=" 查 询 " onClick="return queryclothing();" id="querysubmit"></p></td>
+    	<input type=submit value=" 查 询 " onClick="criterialclothing();" id="querysubmit"></p></td>
 
   </tr>
 <!-- </tr>-->
@@ -451,6 +488,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            		 	<a id="prepage" href="<%=basePath%>/zlinclothing/findclothing.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
             </s:if>
             
+             <s:if test="#session.clothingPageFunc=='criterialclothing'">
+            		 <a  name="homepage" href="<%=basePath%>/zlinclothing/criterialclothing.action">首页</a>
+           			&nbsp;&nbsp;&nbsp;
+           		 	<a id="prepage" href="<%=basePath%>/zlinclothing/criterialclothing.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
+            </s:if>
+            
             
         </s:else>
         
@@ -476,6 +519,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        				 <a id="nextpage" href="<%=basePath%>/zlinclothing/findclothing.action?page=<s:property value="#session.pageBean.currentPage + 1"/>">下一页</a>
           			  &nbsp;&nbsp;&nbsp;
          		 	  <a id="lastpage" href="<%=basePath%>/zlinclothing/findclothing.action?page=<s:property value="#session.pageBean.totalPage"/>">尾页</a>
+       			</s:else>
+       		</s:if>
+       		
+       		<s:if test="#session.clothingPageFunc=='criterialclothing'">
+       			<s:if test="#session.pageBean.totalPage==0">
+          			  下一页&nbsp;&nbsp;&nbsp;尾页
+          		</s:if>
+       		
+       			<s:else>
+       				 <a id="nextpage" href="<%=basePath%>/zlinclothing/criterialclothing.action?page=<s:property value="#session.pageBean.currentPage + 1"/>">下一页</a>
+          			  &nbsp;&nbsp;&nbsp;
+         		 	  <a id="lastpage" href="<%=basePath%>/zlinclothing/criterialclothing.action?page=<s:property value="#session.pageBean.totalPage"/>">尾页</a>
        			</s:else>
        		</s:if>
        		

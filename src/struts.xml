@@ -60,6 +60,14 @@
 		<action name="cleandatainsession" class="cleandatainsession" method="cleanDataInSession">
 			<result name="success" type="redirect-action">findallclothing.action</result>
 		</action>
+		
+		<!-- 模糊查询 -->
+		<action name="criterialclothing" class="criterialclothing" method="criterialClothing">
+			<result name="success">/system/CLOTHING1001.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		
 	</package>
 	
 	
@@ -104,6 +112,13 @@
 		<!-- 清理在session中的storepo -->
 		<action name="cleanstoreinsession" class="cleanstoreinsession" method="cleanStoreInSession">
 			<result name="success" type="redirect-action">findallstore.action</result>
+		</action>
+		
+		<!-- 模糊查询 -->
+		<action name="criterialstore" class="criterialstore" method="criterialStore">
+			<result name="success">/system/bsd_code_006.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="input">input.jsp</result>
 		</action>
 	</package>
 	

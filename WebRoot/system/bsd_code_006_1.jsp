@@ -188,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 				if(storagevolume=="")
 				{
-					addnode("必填","storagevolume");
+					addnode("必填，只能输入数字","storagevolume");
 				}
 				else{
 					removenode("storagevolume");
@@ -327,7 +327,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		             <tr>        	          
 				<td class="textbar81" width="15%">仓储量</td>
 				<td class="textbar01" width="85%">
-		 <input type="text" value="" size="15" id="storagevolume">								
+		 <input type="text" value="" size="15" id="storagevolume" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">								
 				</td>         		
 		         </tr>       	   	
 		        </table>

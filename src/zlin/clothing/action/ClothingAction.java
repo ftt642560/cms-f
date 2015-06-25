@@ -14,7 +14,7 @@ import zlin.clothing.vo.PageBean;
 public class ClothingAction extends ActionSupport{
 private String huangjinhao = "shuaiguo";
 	private ClothingService clothingservice;
-	private ArrayList clothinglist;//Ò³ÃæÖÐ²éÑ¯µÄ½á¹û
+	private ArrayList clothinglist;//Ò³ï¿½ï¿½ï¿½Ð²ï¿½Ñ¯ï¿½Ä½ï¿½ï¿½
 	
 	private String clothnum;
 	private String type;
@@ -28,7 +28,7 @@ private String huangjinhao = "shuaiguo";
 	
 	private PageBean pageBean;
 	
-	private String clothingPageFunc;//ÅÐ¶¨clothing1001.jspÒ³ÃæÊÇÍ¨¹ýÄÇ¸ö²éÑ¯½á¹ûµÄ¹¦ÄÜ
+	private String clothingPageFunc;//ï¿½Ð¶ï¿½clothing1001.jspÒ³ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½
 	
 	public ClothingService getClothingservice() {
 		return clothingservice;
@@ -45,7 +45,7 @@ private String huangjinhao = "shuaiguo";
 
 
 	private ClothingPO clothingpo;
-	private int page;//ÓÃÓÚ·ÖÒ³
+	private int page;//ï¿½ï¿½ï¿½Ú·ï¿½Ò³
 	
 	
 	public int getPage() {
@@ -78,7 +78,7 @@ private String huangjinhao = "shuaiguo";
 	{
 		//clothingservice=new ClothingService();
 		
-		//±íÊ¾Ã¿Ò³ÏÔÊ¾5Ìõ¼ÇÂ¼£¬page±íÊ¾µ±Ç°ÍøÒ³
+		//ï¿½ï¿½Ê¾Ã¿Ò³ï¿½ï¿½Ê¾5ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½pageï¿½ï¿½Ê¾ï¿½ï¿½Ç°ï¿½ï¿½Ò³
         pageBean = clothingservice.findAllClothing(10, page);
         clothinglist=pageBean.getList();
        // HttpServletRequest request = ServletActionContext.getRequest();
@@ -95,14 +95,14 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	//²éÑ¯È«²¿µÄclothing
+	//ï¿½ï¿½Ñ¯È«ï¿½ï¿½ï¿½ï¿½clothing
 	public String findAllClothing()
 	{	
 		//System.out.println("this is findallclothing action");
 		clothingservice=new ClothingService();
 		try{
-			clothinglist=clothingservice.findAllClothing(); //²éÕÒÈ«²¿clothing
-			if(!clothinglist.isEmpty())//Èç¹ûclothinglist²»Îª¿Õ
+			clothinglist=clothingservice.findAllClothing(); //ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½clothing
+			if(!clothinglist.isEmpty())//ï¿½ï¿½ï¿½clothinglistï¿½ï¿½Îªï¿½ï¿½
 			{
 				//System.out.println("clothinglist not null");
 				return "success";
@@ -118,14 +118,14 @@ private String huangjinhao = "shuaiguo";
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			return "input";//³öÏÖÒì³£
+			return "input";//ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 		}
 		
 	}
 	*/
 	
 	
-	//°´Ìõ¼þ²éÑ¯clothing
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯clothing
 	public String findClothing()
 	{
 		//ActionContext ctx=ActionContext.getContext();
@@ -188,7 +188,7 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	//°´Ìõ¼þ²éÑ¯clothing
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯clothing
 	public String findClothing()
 	{
 		//ActionContext ctx=ActionContext.getContext();
@@ -239,7 +239,7 @@ private String huangjinhao = "shuaiguo";
 	}
 	*/
 	
-	//ÐÂ½¨Ò»¸ö»õºÅ
+	//ï¿½Â½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String newClothing()
 	{
 		System.out.println("this is new clothing action");
@@ -293,8 +293,8 @@ private String huangjinhao = "shuaiguo";
 		clothingpo.setType(type);
 		
 		try{
-			Long id=clothingservice.newClothing(clothingpo);//·µ»ØÐÂ½¨»õºÅµÄID
-			if(id!=null)//Èç¹ûclothinglist²»Îª¿Õ
+			Long id=clothingservice.newClothing(clothingpo);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½Åµï¿½ID
+			if(id!=null)//ï¿½ï¿½ï¿½clothinglistï¿½ï¿½Îªï¿½ï¿½
 			{
 				return "success";
 			}
@@ -308,13 +308,13 @@ private String huangjinhao = "shuaiguo";
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			return "input";//³öÏÖÒì³£
+			return "input";//ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 		}
 		
 	}
 	
 	
-	//É¾³ýÒ»¸ö»õºÅ
+	//É¾ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String deleteClothing()
 	{
 		HttpServletRequest request=null;
@@ -326,7 +326,7 @@ private String huangjinhao = "shuaiguo";
 		
 	}
 	
-	//°´ÕÕID£¬²éÕÒµ½Ò»¸ö¶ÔÏó
+	//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public String findAClothing()
 	{
 		HttpServletRequest request=null;
@@ -343,7 +343,7 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	
-	//¸üÐÂÒ»¸ö»õºÅÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	public String updateClothing()
 	{
 		//clothingservice=new ClothingService();
@@ -383,7 +383,7 @@ private String huangjinhao = "shuaiguo";
 					e1.printStackTrace(); 
 			} 
 		
-		//´Ósession¶ÔÏóÖÐÈ¡µÃÐèÒª¸ü¸ÄÐÅÏ¢µÄclothingpo¶ÔÏóµÄIDÖµ£¬
+		//ï¿½ï¿½sessionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½clothingpoï¿½ï¿½ï¿½ï¿½ï¿½IDÖµï¿½ï¿½
 		ClothingPO c=new ClothingPO();
 		c=(ClothingPO)ActionContext.getContext().getSession().get("clothingpo");		
 		clothingpo.setId(c.getId());
@@ -406,13 +406,13 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	 * ¸üÐÂclothingµÄÊ±ºò£¬´ÓÇ°Ì¨´«¹ýÒ»¸öIDºÅµ½ºóÌ¨£¬½øÐÐ²éÑ¯ÐèÒª¸üÐÂµÄclothingpo¶ÔÏó¡£
-	 * °Ñ²éÑ¯µ½µÄ½á¹û·ÅÈësessionÖÐ£¬È»ºóÔÚÇ°Ì¨µ÷ÓÃclothingpo£¬¶ÔÃ¿¸öÊäÈë¿ò½øÐÐ¸³Öµ
-	 * ËùÒÔ£¬ÓÃÍêÁËÕâ¸ö²éÑ¯½á¹ûµÄ¶ÔÏóÖ®ºó£¬¾ÍÐèÒª°ÑËü´ÓsessionÖÐÒÆ³ý(¼´ÔÚupdateClothing×îºóÒÆ³ý)
-	 * ËùÒÔ£¬±£´æ³É¹¦£¬ÒÆ³ýÒ»´Î£¬ÔÚ·µ»ØµÄÊ±ºò£¬Ò²ÐèÒªÒÆ³ýÒ»´Î
+	 * ï¿½ï¿½ï¿½ï¿½clothingï¿½ï¿½Ê±ï¿½ò£¬´ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½IDï¿½Åµï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½clothingpoï¿½ï¿½ï¿½ï¿½
+	 * ï¿½Ñ²ï¿½Ñ¯ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½Ð£ï¿½È»ï¿½ï¿½ï¿½ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½clothingpoï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½Öµ
+	 * ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Ö®ï¿½ó£¬¾ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½ï¿½ï¿½Æ³ï¿½(ï¿½ï¿½ï¿½ï¿½updateClothingï¿½ï¿½ï¿½ï¿½Æ³ï¿½)
+	 * ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½Æ³ï¿½Ò»ï¿½Î£ï¿½ï¿½Ú·ï¿½ï¿½Øµï¿½Ê±ï¿½ï¿½Ò²ï¿½ï¿½Òªï¿½Æ³ï¿½Ò»ï¿½ï¿½
 	 * 
 	 * 
-	 * ·µ»ØµÄÊ±ºò£¬µ÷ÓÃ´Ëº¯ÊýÇå¿ÕsessionÖÐµÄclothingpoµÄ¶ÔÏó
+	 * ï¿½ï¿½ï¿½Øµï¿½Ê±ï¿½ò£¬µï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½Ðµï¿½clothingpoï¿½Ä¶ï¿½ï¿½ï¿½
 	 * */
 	
 	public String cleanDataInSession()
@@ -421,5 +421,97 @@ private String huangjinhao = "shuaiguo";
 		return "success";
 		
 	}
+	
+	
+	
+	/*
+	//æ¨¡ç³ŠæŸ¥è¯¢
+	public String criterialClothing()
+	{
+		HttpServletRequest request=null;
+		request=ServletActionContext.getRequest();
+		clothnum=request.getParameter("clothnum");
+		type=request.getParameter("type");
+		color=request.getParameter("color");
+		size=request.getParameter("size");
+		
+		
+	
+		try { 
+			color = java.net.URLDecoder.decode(color,"UTF-8"); 
+			//color = java.net.URLDecoder.decode(color,"UTF-8"); 
+			
+			type = java.net.URLDecoder.decode(type,"UTF-8");
+			//type = java.net.URLDecoder.decode(type,"UTF-8");
+			} catch (UnsupportedEncodingException e1) { 
+			e1.printStackTrace(); 
+			} 
+		System.out.println("criterial action clothnum="+clothnum+",type="+type+",color="+color+",size="+size);
+			
+			clothingPageFunc="findclothing";
+			 ActionContext.getContext().getSession().put("clothingPageFunc",clothingPageFunc);
+			
+			 
+			// pageBean=clothingservice.findClothing(clothnum, type, color, size, 10, page);
+			 ClothingPO clothingPO=new ClothingPO();
+			 clothingpo.setClothnum(clothnum);
+			 clothingpo.setColor(color);
+			 clothingpo.setType(type);
+			 clothingpo.setSize(size);
+			 pageBean=clothingservice.criteriaClothing(10, page, clothingpo);
+			 
+			 ActionContext.getContext().getSession().put("pageBean",pageBean);
+			 
+			clothinglist=pageBean.getList();
+			return "success";
+		
+	}*/
+	
+	public String criterialClothing()
+	{
+		HttpServletRequest request=null;
+		request=ServletActionContext.getRequest();
+		clothnum=request.getParameter("clothnum");
+		type=request.getParameter("type");
+		color=request.getParameter("color");
+		size=request.getParameter("size");
+		
+		
+	
+		try { 
+			color = java.net.URLDecoder.decode(color,"UTF-8"); 
+			//color = java.net.URLDecoder.decode(color,"UTF-8"); 
+			
+			type = java.net.URLDecoder.decode(type,"UTF-8");
+			//type = java.net.URLDecoder.decode(type,"UTF-8");
+			} catch (UnsupportedEncodingException e1) { 
+			e1.printStackTrace(); 
+			} 
+		
+		
+		
+		clothingpo.setClothnum(clothnum);
+		clothingpo.setColor(color);
+		clothingpo.setSize(size);
+		clothingpo.setType(type);
+		
+		
+		System.out.println("criterial action clothnum="+clothnum+",type="+type+",color="+color+",size="+size);
+			
+			clothingPageFunc="criterialclothing";
+			 ActionContext.getContext().getSession().put("clothingPageFunc",clothingPageFunc);
+			
+			 
+			// pageBean=clothingservice.findClothing(clothnum, type, color, size, 10, page);
+			 
+			 pageBean=clothingservice.criteriaClothing(clothingpo, 10, page);
+			 
+			 ActionContext.getContext().getSession().put("pageBean",pageBean);
+			 
+			clothinglist=pageBean.getList();
+			return "success";
+		
+	}
+	
 	
 }

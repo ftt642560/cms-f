@@ -10,8 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import zlin.clothing.po.ClothingPO;
-import zlin.store.po.StorePO;
-
 import hjh.orderin.dao.AddOrderInDetailDAO;
 import hjh.orderin.domain.InOrder;
 import hjh.orderin.domain.InOrderDetail;

@@ -4,10 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import zlin.clothing.po.ClothingPO;
@@ -109,6 +112,70 @@ public class StoreDao extends HibernateDaoSupport
 	}
 	
 	public List<StorePO> findAllStore(){
-		return (List<StorePO>)getHibernateTemplate().find("FROM StorePO");
+		return getHibernateTemplate().find("FROM StorePO");
 	}
+	
+	
+	
+	//模糊查询时，获得所有的数据
+	public int criterialAllRows(StorePO storepo)
+	{
+		
+		final String storenum=storepo.getStorenum();//�ֿ���
+		final String storename=storepo.getStorename();//�ֿ����
+		
+		HibernateTemplate ht = getHibernateTemplate();
+		List<StorePO> storelist = ht.executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Criteria criteria =  session.createCriteria(StorePO.class);
+				if(!storenum.trim().equals("") && storenum != null){
+					criteria.add(Restrictions.eq("storenum", storenum));
+				}
+				if(!storename.trim().equals("") && storename != null){
+					criteria.add(Restrictions.eq("storename", storename));
+				}
+				
+				
+				return criteria.list();
+			}
+		});
+
+
+		return storelist.size();
+		
+	}
+	
+	//模糊查询
+	public List criteriaStore(StorePO storepo,final int offset,final int pageSize)
+	{	
+		
+		final String storenum=storepo.getStorenum();//�ֿ���
+		final String storename=storepo.getStorename();//�ֿ����
+		
+		HibernateTemplate ht = getHibernateTemplate();
+		List<StorePO> storelist = ht.executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Criteria criteria =  session.createCriteria(StorePO.class);
+				if(!storenum.trim().equals("") && storenum != null){
+					criteria.add(Restrictions.eq("storenum", storenum));
+				}
+				if(!storename.trim().equals("") && storename != null){
+					criteria.add(Restrictions.eq("storename", storename));
+				}
+				
+				
+				return criteria.list();
+			}
+		});
+
+
+		return storelist;
+		
+	}
+	
+	
 }

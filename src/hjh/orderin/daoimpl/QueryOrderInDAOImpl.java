@@ -42,6 +42,7 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
 		QueryOrderInDAOImpl.currentpages = currentpages;
 	}
 
+	@Override
 	public List<InOrder> query(int firstPage,String receiptsNum,String repotory,String startDate,String endDate) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
@@ -63,7 +64,7 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
 					currentpages = firstPage;
 					query.setFirstResult((firstPage - 1) * 10);
 				}
-				this.pages = pages;
+				QueryOrderInDAOImpl.pages = pages;
 			    query.setMaxResults(10);
 			    
 				inOrders = query.list();
@@ -85,13 +86,13 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
 						currentpages = firstPage;
 						query.setFirstResult((firstPage - 1) * 10);
 					}
-					this.pages = pages;
+					QueryOrderInDAOImpl.pages = pages;
 				    query.setMaxResults(10);
 				    
 					inOrders = query.list();
 				
                 if(inOrders.size() == 0){
-                	//Æ´½Ó²éÑ¯ÊµÌåµÄhqlÓï¾äºÍ¼ÆËãÂú×ãµ±Ç°Ìõ¼þµÄ¼ÇÂ¼ÊýµÄÔ­ÉúsqlÓï¾ä
+                	//Æ´ï¿½Ó²ï¿½Ñ¯Êµï¿½ï¿½ï¿½hqlï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ãµ±Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½Ô­ï¿½ï¿½sqlï¿½ï¿½ï¿½
     				StringBuffer countSql = new StringBuffer("select count(*) from inorder where ");
                 	StringBuffer otherSql = new StringBuffer("from InOrder where ");
     				if(!repotory.equals("0")){
@@ -135,7 +136,7 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
     				}
                 	
                 	
-                	//¼ÆËã×ÜÒ³ÊýºÍµ±Ç°Òª¼ÓÔØÄÄÒ³²¢µ÷ÓÃsetFirstResultºÍsetMaxResults·½·¨
+                	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½Íµï¿½Ç°Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½setFirstResultï¿½ï¿½setMaxResultsï¿½ï¿½ï¿½ï¿½
                 	SQLQuery sqlQuery2 =  session.createSQLQuery(countSql.toString());
  					int pages2 = (int) Math.ceil(((BigInteger)sqlQuery2.list().get(0)).doubleValue()/10);
  					if(firstPage <= 0){
@@ -148,12 +149,12 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
  						currentpages = firstPage;
  						query.setFirstResult((firstPage - 1) * 10);
  					}
- 					this.pages = pages2;
+ 					QueryOrderInDAOImpl.pages = pages2;
 				    query.setMaxResults(10);
     				inOrders = query.list();
                 }
 			}else{
-				//Æ´½Ó²éÑ¯ÊµÌåµÄhqlÓï¾äºÍ¼ÆËãÂú×ãµ±Ç°Ìõ¼þµÄ¼ÇÂ¼ÊýµÄÔ­ÉúsqlÓï¾ä
+				//Æ´ï¿½Ó²ï¿½Ñ¯Êµï¿½ï¿½ï¿½hqlï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ãµ±Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ï¿½Ô­ï¿½ï¿½sqlï¿½ï¿½ï¿½
 				StringBuffer otherSql = new StringBuffer("from InOrder where ");
 				StringBuffer countSql = new StringBuffer("select count(*) from inorder where ");
 				if(!repotory.equals("0")){
@@ -191,11 +192,11 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
             	System.out.println(otherSql.toString());
             	System.out.println(countSql.toString());
             	
-            	//¼ÆËã×ÜÒ³ÊýºÍµ±Ç°Òª¼ÓÔØÄÄÒ³²¢µ÷ÓÃsetFirstResultºÍsetMaxResults·½·¨
+            	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½Íµï¿½Ç°Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½setFirstResultï¿½ï¿½setMaxResultsï¿½ï¿½ï¿½ï¿½
             	SQLQuery sqlQuery2 =  session.createSQLQuery(countSql.toString());
 				int pages2 = (int) Math.ceil(((BigInteger)sqlQuery2.list().get(0)).doubleValue()/10);
 				System.out.println(pages2);
-				System.out.println("¼ÇÂ¼Êý---" + ((BigInteger)sqlQuery2.list().get(0)).doubleValue());
+				System.out.println("ï¿½ï¿½Â¼ï¿½ï¿½---" + ((BigInteger)sqlQuery2.list().get(0)).doubleValue());
 				if(firstPage <= 0){
 					currentpages = 1;
 					query.setFirstResult(0);
@@ -206,7 +207,7 @@ public class QueryOrderInDAOImpl implements QueryOrderInDAO {
 					currentpages = firstPage;
 					query.setFirstResult((firstPage - 1) * 10);
 				}
-				this.pages = pages2;
+				QueryOrderInDAOImpl.pages = pages2;
 			    query.setMaxResults(10);
 				inOrders = query.list();
 			}

@@ -39,8 +39,8 @@ public class ClothingService {
 	}
 
 	/**
-     * pageSizeÎªÃ¿Ò³ÏÔÊ¾µÄ¼ÇÂ¼Êý
-     * pageÎªµ±Ç°ÏÔÊ¾µÄÍøÒ³
+     * pageSizeÎªÃ¿Ò³ï¿½ï¿½Ê¾ï¿½Ä¼ï¿½Â¼ï¿½ï¿½
+     * pageÎªï¿½ï¿½Ç°ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ò³
 	 * @throws Exception 
      */
 	public PageBean findAllClothing(int pageSize, int page)
@@ -75,7 +75,7 @@ public class ClothingService {
 	}
 
 	/*
-	//»ñµÃclothingÈ«²¿¶ÔÏó
+	//ï¿½ï¿½ï¿½clothingÈ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public ArrayList<ClothingPO> findAllClothing()
 	{
 		//System.out.println("this is ClothingService");
@@ -143,7 +143,7 @@ public class ClothingService {
 	
 	
 	/*
-	//°´Ìõ¼þ²éÑ¯clothing
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯clothing
 	public ArrayList<ClothingPO> findClothing(String CLOTHNUM,String TYPE,String COLOR,String SIZE)
 	{
 		clothingdao=new ClothingDao();
@@ -166,25 +166,25 @@ public class ClothingService {
 	}
 	*/
 	
-	//ÐÂ½¨Ò»¸ö»õºÅ
+	//ï¿½Â½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Long newClothing(ClothingPO CLOTHINGPO)
 	{
 		System.out.println("this is newclothing service");
 		Long id = null;
 		//clothingdao=new ClothingDao();
 		//ClothingPO clothingpo = new ClothingPO();
-	    clothingpo.setClothnum(CLOTHINGPO.getClothnum());//»õºÅ
-	    clothingpo.setColor(CLOTHINGPO.getColor());//É«ºÅ
-	    clothingpo.setFabric(CLOTHINGPO.getFabric());//ÃæÁÏ
-	    clothingpo.setSize(CLOTHINGPO.getSize());//³ßÂë
-	    clothingpo.setType(CLOTHINGPO.getType());//Æ·Ãû
-	    clothingpo.setRetailPrice(CLOTHINGPO.getRetailPrice());//ÁãÊÛ¼Û
-	    clothingpo.setFactoryPrice(CLOTHINGPO.getFactoryPrice());//³ö³§¼Û
-	    clothingpo.setClothingMaterial(CLOTHINGPO.getClothingMaterial());//ÀïÁÏ
+	    clothingpo.setClothnum(CLOTHINGPO.getClothnum());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setColor(CLOTHINGPO.getColor());//É«ï¿½ï¿½
+	    clothingpo.setFabric(CLOTHINGPO.getFabric());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setSize(CLOTHINGPO.getSize());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setType(CLOTHINGPO.getType());//Æ·ï¿½ï¿½
+	    clothingpo.setRetailPrice(CLOTHINGPO.getRetailPrice());//ï¿½ï¿½ï¿½Û¼ï¿½
+	    clothingpo.setFactoryPrice(CLOTHINGPO.getFactoryPrice());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setClothingMaterial(CLOTHINGPO.getClothingMaterial());//ï¿½ï¿½ï¿½ï¿½
 		
 	    try
 		{
-			id=clothingdao.newClothing(clothingpo);//·µ»ØÐÂ½¨»õºÅµÄIDÖµ
+			id=clothingdao.newClothing(clothingpo);//ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½Åµï¿½IDÖµ
 
 		}catch(Exception e)
 		{
@@ -198,7 +198,7 @@ public class ClothingService {
 	
 	
 	
-	//É¾³ýÒ»¸öclothing
+	//É¾ï¿½ï¿½Ò»ï¿½ï¿½clothing
 	public void deleteClothing(Long CLOTHINGID)
 	{
 
@@ -211,7 +211,7 @@ public class ClothingService {
 		}
 	}
 	
-	//¸üÐÂÒ»¸öclothing
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½clothing
 	public void updateClothing(ClothingPO clothingpo)
 	{
 		try{
@@ -224,7 +224,7 @@ public class ClothingService {
 	}
 	
 	
-	//¸üÐÂÒ»¸öÐÅÏ¢µÄÊ±ºò£¬²éÕÒµ½ÐèÒª¸üÐÂµÄÒ»ÌõÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ê±ï¿½ò£¬²ï¿½ï¿½Òµï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ï¢
 	public ClothingPO findAClothing(Long CLOTHINGID)
 	{
 		try{
@@ -236,5 +236,62 @@ public class ClothingService {
 		return clothingpo;
 	}
 	
+	
+	/*
+	//æ¨¡ç³ŠæŸ¥è¯¢
+	public PageBean criteriaClothing(int pageSize, int page,ClothingPO CLOTHINGPO)
+	{
+		System.out.println("criterclothi service ClothingPO.clothnum="+CLOTHINGPO.getClothnum());
+		 PageBean pageBean = new PageBean();
+		 
+		  int allRows = clothingdao.criterialAllRows(CLOTHINGPO);
+	        
+	        int totalPage = pageBean.getTotalPages(pageSize, allRows);
+	        
+	        int currentPage = pageBean.getCurPage(page);
+	        
+	        int offset = pageBean.getCurrentPageOffset(pageSize, currentPage);
+	        
+	        ArrayList<ClothingPO> list=(ArrayList<ClothingPO>) clothingdao.criteriaClothing(CLOTHINGPO, offset, pageSize);
+	        
+	        pageBean.setList(list);
+        	pageBean.setAllRows(allRows);
+        	pageBean.setCurrentPage(currentPage);
+        	pageBean.setTotalPage(totalPage);
+	        
+        	return pageBean;
+	}*/
+	
+	public PageBean criteriaClothing(ClothingPO CLOTHINGPO,int pageSize, int page)
+	{
+		ClothingPO clothingpo=new ClothingPO();
+	    clothingpo.setClothnum(CLOTHINGPO.getClothnum());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setColor(CLOTHINGPO.getColor());//É«ï¿½ï¿½
+	    clothingpo.setFabric(CLOTHINGPO.getFabric());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setSize(CLOTHINGPO.getSize());//ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setType(CLOTHINGPO.getType());//Æ·ï¿½ï¿½
+	    clothingpo.setRetailPrice(CLOTHINGPO.getRetailPrice());//ï¿½ï¿½ï¿½Û¼ï¿½
+	    clothingpo.setFactoryPrice(CLOTHINGPO.getFactoryPrice());//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	    clothingpo.setClothingMaterial(CLOTHINGPO.getClothingMaterial());//ï¿½ï¿½ï¿½ï¿½
+		System.out.println("criterclothi service ClothingPO.clothnum=");
+		 PageBean pageBean = new PageBean();
+		 
+		  int allRows = clothingdao.criterialAllRows(clothingpo);
+	        
+	        int totalPage = pageBean.getTotalPages(pageSize, allRows);
+	        
+	        int currentPage = pageBean.getCurPage(page);
+	        
+	        int offset = pageBean.getCurrentPageOffset(pageSize, currentPage);
+	        
+	        ArrayList<ClothingPO> list=(ArrayList<ClothingPO>) clothingdao.criteriaClothing(clothingpo, offset, pageSize);
+	        
+	        pageBean.setList(list);
+        	pageBean.setAllRows(allRows);
+        	pageBean.setCurrentPage(currentPage);
+        	pageBean.setTotalPage(totalPage);
+	        
+        	return pageBean;
+	}
 	
 }

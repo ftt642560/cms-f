@@ -3,8 +3,6 @@ package ldm.user.action;
 import java.util.List;
 
 import ldm.pager.util.PagerBean;
-import ldm.pager.util.PagerDao;
-import ldm.user.dao.UserDao;
 import ldm.user.po.User;
 import ldm.user.service.UserService;
 
@@ -19,15 +17,15 @@ public class UserAction extends ActionSupport{
 
 	
 	private PagerBean pagerBean;
-	private int searchFlag;//ÓëÌõ¼ş²éÑ¯Çø·Ö±êÖ¾
+	private int searchFlag;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½Ö±ï¿½Ö¾
 	private UserService userService;
 	private User user;
 	private String result;
-	private String oldPassword;//½ÓÊÕ¾ÉÃÜÂë
+	private String oldPassword;//ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½ï¿½ï¿½ï¿½
 	private List userList;
 	
 	/**
-	 * ²éÑ¯ÓÃ»§ÁĞ±í
+	 * ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½Ğ±ï¿½
 	 * @return
 	 */
 	public String userList(){
@@ -36,7 +34,7 @@ public class UserAction extends ActionSupport{
 		return "userListSuc";
 	}
 	/**
-	 * Ìõ¼ş²éÑ¯ÓÃ»§ÁĞ±íĞÅÏ¢
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½Ğ±ï¿½ï¿½ï¿½Ï¢
 	 * @return
 	 */
 	public String userConList(){
@@ -45,75 +43,75 @@ public class UserAction extends ActionSupport{
 		return "userListSuc";
 	}
 	/**
-	 * ÓÃ»§Ìí¼Ó
+	 * ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public String userAdd(){
 		try{
 			boolean b = userService.save(user);
 			if(b)
-				result = "Ìí¼ÓÓÃ»§³É¹¦";
+				result = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½É¹ï¿½";
 			else 
-				result = "¸ÃÕËºÅÒÑ´æÔÚ";
+				result = "ï¿½ï¿½ï¿½Ëºï¿½ï¿½Ñ´ï¿½ï¿½ï¿½";
 		}catch (Exception e) {
 			e.printStackTrace();
-			result = "Ìí¼ÓÓÃ»§Ê§°Ü";
+			result = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ê§ï¿½ï¿½";
 		}
 		return "userOpr";
 	}
 	public String userUpdate(){
 		try{
 			userService.save(user);
-			result = "¸ü¸ÄÓÃ»§ĞÅÏ¢³É¹¦";
+			result = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½É¹ï¿½";
 		}catch (Exception e) {
 			e.printStackTrace();
-			result = "¸ü¸ÄÓÃ»§ĞÅÏ¢Ê§°Ü";
+			result = "ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢Ê§ï¿½ï¿½";
 		}
 		return "userOpr";
 	}
 	/**
-	 * É¾³ıÓÃ»§
+	 * É¾ï¿½ï¿½ï¿½Ã»ï¿½
 	 * @return
 	 */
 	public String userDel(){
 		try{
 			userService.delete(user);
-			result = "É¾³ıÓÃ»§³É¹¦";
+			result = "É¾ï¿½ï¿½ï¿½Ã»ï¿½ï¿½É¹ï¿½";
 		}catch (Exception e) {
 			e.printStackTrace();
-			result = "É¾³ıÓÃ»§Ê§°Ü";
+			result = "É¾ï¿½ï¿½ï¿½Ã»ï¿½Ê§ï¿½ï¿½";
 		}
 		return "userOpr";
 	}
 	/**
-	 * ÓÃ»§ĞŞ¸ÄÃÜÂë
+	 * ï¿½Ã»ï¿½ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public String modifyPassword(){
 		try{
 			boolean b = userService.modifyPassword(oldPassword, user.getPassword(),user.getId());
 			if(b)
-				result = "ĞŞ¸ÄÃÜÂë³É¹¦";
+				result = "ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½";
 			else
-				result = "¾ÉÃÜÂë»òÕßµÇÂ¼ÕËºÅ²»ÕıÈ·";
+				result = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ßµï¿½Â¼ï¿½ËºÅ²ï¿½ï¿½ï¿½È·";
 		}catch (Exception e) {
 			e.printStackTrace();
-			result = "ĞŞ¸ÄÃÜÂëÊ§°Ü";
+			result = "ï¿½Ş¸ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½";
 		}
 		return "userOpr";
 	}
 	/**
-	 * µÇÂ¼
+	 * ï¿½ï¿½Â¼
 	 * @return
 	 */
 	public String login(){
 		userList = userService.login(user.getUsercode(), user.getPassword());
 		System.out.println("~~~~~~~~~"+userList);
 		if(userList!=null){
-			ActionContext.getContext().getSession().put("curUser",userList);//±£´æµ±Ç°µÇÂ¼ÓÃ»§
+			ActionContext.getContext().getSession().put("curUser",userList);//ï¿½ï¿½ï¿½æµ±Ç°ï¿½ï¿½Â¼ï¿½Ã»ï¿½
 			result = "true";
 		}else 
-			result = "ÓÃ»§Ãû»òÕßÃÜÂë´íÎó,ÇëÖØĞÂÊäÈë";
+			result = "ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		return "userOpr";
 	}
 	

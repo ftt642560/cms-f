@@ -167,4 +167,35 @@ public class StoreService {
 	}
 	
 	
+	//模糊查询
+	public PageBean criteriaStore(StorePO STOREPO,int pageSize, int page)
+	{
+				
+		StorePO storepo=new StorePO();
+		storepo.setStorenum(STOREPO.getStorenum());
+		storepo.setStorename(STOREPO.getStorename());
+		storepo.setLinkman(STOREPO.getLinkman());
+		storepo.setTele(STOREPO.getTele());
+		storepo.setStoragevolume(STOREPO.getStoragevolume());
+		
+		 PageBean pageBean = new PageBean();
+		 
+		  int allRows = storedao.criterialAllRows(storepo);
+	        
+	        int totalPage = pageBean.getTotalPages(pageSize, allRows);
+	        
+	        int currentPage = pageBean.getCurPage(page);
+	        
+	        int offset = pageBean.getCurrentPageOffset(pageSize, currentPage);
+	        
+	        ArrayList<StorePO> list=(ArrayList<StorePO>) storedao.criteriaStore(storepo, offset, pageSize);
+	        
+	        pageBean.setList(list);
+        	pageBean.setAllRows(allRows);
+        	pageBean.setCurrentPage(currentPage);
+        	pageBean.setTotalPage(totalPage);
+	        
+        	return pageBean;
+	}
+	
 }

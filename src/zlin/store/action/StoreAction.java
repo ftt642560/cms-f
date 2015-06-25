@@ -9,7 +9,6 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 
-import zlin.clothing.po.ClothingPO;
 import zlin.clothing.vo.PageBean;
 import zlin.store.po.StorePO;
 import zlin.store.service.StoreService;
@@ -17,16 +16,16 @@ import zlin.store.service.StoreService;
 public class StoreAction {
 	private PageBean pageBean;
 	private StoreService storeservice;
-	private ArrayList storelist;//Ò³ÃæÖÐ²éÑ¯µÄ½á¹û
-	private String storePageFunc;//ÅÐ¶¨clothing1001.jspÒ³ÃæÊÇÍ¨¹ýÄÇ¸ö²éÑ¯½á¹ûµÄ¹¦ÄÜ
-	private int page;//ÓÃÓÚ·ÖÒ³
+	private ArrayList storelist;//Ò³ï¿½ï¿½ï¿½Ð²ï¿½Ñ¯ï¿½Ä½ï¿½ï¿½
+	private String storePageFunc;//ï¿½Ð¶ï¿½clothing1001.jspÒ³ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½Ç¸ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ä¹ï¿½ï¿½ï¿½
+	private int page;//ï¿½ï¿½ï¿½Ú·ï¿½Ò³
 	private StorePO storepo;
 	
 	private String storenum;
 	private String storename;
-	private String linkman;//ÁªÏµÈË
-	private String tele;//ÁªÏµµç»°
-	private String storagevolume;//²Ö´¢Á¿
+	private String linkman;//ï¿½ï¿½Ïµï¿½ï¿½
+	private String tele;//ï¿½ï¿½Ïµï¿½ç»°
+	private String storagevolume;//ï¿½Ö´ï¿½ï¿½ï¿½
 	private String id;
 	
 	
@@ -132,11 +131,11 @@ public class StoreAction {
 	}
 
 	
-	//²éÕÒÈ«²¿²Ö¿âÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½Ï¢
 	public String findAllStore()
 	{
 		
-		//±íÊ¾Ã¿Ò³ÏÔÊ¾5Ìõ¼ÇÂ¼£¬page±íÊ¾µ±Ç°ÍøÒ³
+		//ï¿½ï¿½Ê¾Ã¿Ò³ï¿½ï¿½Ê¾5ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½pageï¿½ï¿½Ê¾ï¿½ï¿½Ç°ï¿½ï¿½Ò³
         pageBean = storeservice.findAllStore(10, page);
         storelist=pageBean.getList();
        // HttpServletRequest request = ServletActionContext.getRequest();
@@ -151,7 +150,7 @@ public class StoreAction {
 		
 	}
 	
-	//°´Ìõ¼þ²éÕÒÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	public String findStore()
 	{
 		HttpServletRequest request=null;
@@ -179,7 +178,7 @@ public class StoreAction {
 			return "success";
 		}
 	
-	//ÐÂ½¨²Ö¿â
+	//ï¿½Â½ï¿½ï¿½Ö¿ï¿½
 	public String newStore()
 	{
 		HttpServletRequest request=null;
@@ -217,7 +216,7 @@ public class StoreAction {
 		
 		try{
 			Long id=storeservice.newStore(storepo);
-			if(id!=null)//Èç¹ûclothinglist²»Îª¿Õ
+			if(id!=null)//ï¿½ï¿½ï¿½clothinglistï¿½ï¿½Îªï¿½ï¿½
 			{
 				return "success";
 			}
@@ -231,13 +230,13 @@ public class StoreAction {
 		}catch(Exception e)
 		{
 			e.printStackTrace();
-			return "input";//³öÏÖÒì³£
+			return "input";//ï¿½ï¿½ï¿½ï¿½ï¿½ì³£
 		}
 		
 	
 	}
 	
-	//É¾³ý²Ö¿â
+	//É¾ï¿½ï¿½Ö¿ï¿½
 	public String deleteStore()
 	{
 		HttpServletRequest request=null;
@@ -248,7 +247,7 @@ public class StoreAction {
 		return "success";
 	}
 	
-	//°´ÕÕID£¬²éÕÒÒ»¸ö²Ö¿âÐÅÏ¢,ÓÃÓÚ¸üÐÂÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö¿ï¿½ï¿½ï¿½Ï¢,ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	public String findAStore()
 	{
 		HttpServletRequest request=null;
@@ -263,7 +262,7 @@ public class StoreAction {
 		return "success";
 	}
 	
-	//ÐÞ¸Ä»õºÅÐÅÏ¢
+	//ï¿½Þ¸Ä»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	public String updateStore()
 	{
 		HttpServletRequest request=null;
@@ -298,7 +297,7 @@ public class StoreAction {
 		storepo.setTele(tele);
 		storepo.setStoragevolume(storagevolume);
 		
-		//´Ósession¶ÔÏóÖÐÈ¡µÃÐèÒª¸ü¸ÄÐÅÏ¢µÄstorepo¶ÔÏóµÄIDÖµ£¬
+		//ï¿½ï¿½sessionï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½storepoï¿½ï¿½ï¿½ï¿½ï¿½IDÖµï¿½ï¿½
 		StorePO s=new StorePO();
 		s=(StorePO)ActionContext.getContext().getSession().get("storepo");		
 		storepo.setId(s.getId());
@@ -311,13 +310,13 @@ public class StoreAction {
 	
 	
 	/*
-	 * ¸üÐÂstorepoµÄÊ±ºò£¬´ÓÇ°Ì¨´«¹ýÒ»¸öIDºÅµ½ºóÌ¨£¬½øÐÐ²éÑ¯ÐèÒª¸üÐÂµÄclothingpo¶ÔÏó¡£
-	 * °Ñ²éÑ¯µ½µÄ½á¹û·ÅÈësessionÖÐ£¬È»ºóÔÚÇ°Ì¨µ÷ÓÃstorepo£¬¶ÔÃ¿¸öÊäÈë¿ò½øÐÐ¸³Öµ
-	 * ËùÒÔ£¬ÓÃÍêÁËÕâ¸ö²éÑ¯½á¹ûµÄ¶ÔÏóÖ®ºó£¬¾ÍÐèÒª°ÑËü´ÓsessionÖÐÒÆ³ý(¼´ÔÚupdatestore×îºóÒÆ³ý)
-	 * ËùÒÔ£¬±£´æ³É¹¦£¬ÒÆ³ýÒ»´Î£¬ÔÚ·µ»ØµÄÊ±ºò£¬Ò²ÐèÒªÒÆ³ýÒ»´Î
+	 * ï¿½ï¿½ï¿½ï¿½storepoï¿½ï¿½Ê±ï¿½ò£¬´ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½IDï¿½Åµï¿½ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½Òªï¿½ï¿½ï¿½Âµï¿½clothingpoï¿½ï¿½ï¿½ï¿½
+	 * ï¿½Ñ²ï¿½Ñ¯ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½Ð£ï¿½È»ï¿½ï¿½ï¿½ï¿½Ç°Ì¨ï¿½ï¿½ï¿½ï¿½storepoï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½Öµ
+	 * ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½Ö®ï¿½ó£¬¾ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½ï¿½ï¿½Æ³ï¿½(ï¿½ï¿½ï¿½ï¿½updatestoreï¿½ï¿½ï¿½ï¿½Æ³ï¿½)
+	 * ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½Æ³ï¿½Ò»ï¿½Î£ï¿½ï¿½Ú·ï¿½ï¿½Øµï¿½Ê±ï¿½ï¿½Ò²ï¿½ï¿½Òªï¿½Æ³ï¿½Ò»ï¿½ï¿½
 	 * 
 	 * 
-	 * ·µ»ØµÄÊ±ºò£¬µ÷ÓÃ´Ëº¯ÊýÇå¿ÕsessionÖÐµÄstorepoµÄ¶ÔÏó
+	 * ï¿½ï¿½ï¿½Øµï¿½Ê±ï¿½ò£¬µï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½Ðµï¿½storepoï¿½Ä¶ï¿½ï¿½ï¿½
 	 * */
 	
 	public String cleanStoreInSession()
@@ -328,5 +327,44 @@ public class StoreAction {
 	}
 	
 	
+	//æ¨¡ç³ŠæŸ¥è¯¢
+	public String criterialStore()
+	{
+		HttpServletRequest request=null;
+		request=ServletActionContext.getRequest();
+		storenum=request.getParameter("storenum");
+		storename=request.getParameter("storename");
+		
+		
+		
+	
+		try { 
+			storename = java.net.URLDecoder.decode(storename,"UTF-8"); 
+			//color = java.net.URLDecoder.decode(color,"UTF-8"); 
+			
+			storenum = java.net.URLDecoder.decode(storenum,"UTF-8");
+			//type = java.net.URLDecoder.decode(type,"UTF-8");
+			} catch (UnsupportedEncodingException e1) { 
+			e1.printStackTrace(); 
+			} 
+		
+		storepo.setStorenum(storenum);
+		storepo.setStorename(storename);
+		
+		
+			storePageFunc="criterialstore";
+			 ActionContext.getContext().getSession().put("storePageFunc",storePageFunc);
+			
+			 
+			// pageBean=clothingservice.findClothing(clothnum, type, color, size, 10, page);
+			 
+			 pageBean=storeservice.criteriaStore(storepo, 10, page);
+			 
+			 ActionContext.getContext().getSession().put("pageBean",pageBean);
+			 
+			storelist=pageBean.getList();
+			return "success";
+		
+	}
 	
 }

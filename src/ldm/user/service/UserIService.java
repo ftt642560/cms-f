@@ -140,7 +140,7 @@ public class UserIService extends HibernateDaoSupport implements UserService,jav
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		this.codeConfig = filterConfig;
-		this.pageSize = Integer.parseInt(this.codeConfig.getInitParameter("pageSize"));
+		UserIService.pageSize = Integer.parseInt(this.codeConfig.getInitParameter("pageSize"));
 	}
 	
 }

@@ -140,6 +140,14 @@
 		<property name="clothingservice" ref="clothingservice"></property>
 	</bean>
 
+		<!-- 模糊查询clothing -->
+	<bean id="criterialclothing" class="zlin.clothing.action.ClothingAction">
+		<property name="clothingservice" ref="clothingservice"></property>
+		<property name="clothingpo" ref="clothingpo"></property>
+	</bean>
+	
+	
+
 
 	<!-- 查找全部的仓库信息 -->
 	<bean id="findallstore" class="zlin.store.action.StoreAction">
@@ -181,6 +189,13 @@
 		<property name="storeservice" ref="storeservice"></property>
 		<property name="storepo" ref="storepo"></property>
 	</bean>
+	
+	<!-- 模糊查询 -->
+	<bean id="criterialstore" class="zlin.store.action.StoreAction">
+		<property name="storeservice" ref="storeservice"></property>
+		<property name="storepo" ref="storepo"></property>
+	</bean>
+	
 <!-- 查询入库单模块 -->
 	<bean id="queryOrderInDAOImpl" class="hjh.orderin.daoimpl.QueryOrderInDAOImpl">
 		<property name="sessionFactory" ref="sessionfactory"></property>

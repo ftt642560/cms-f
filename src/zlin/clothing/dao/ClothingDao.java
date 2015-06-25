@@ -4,21 +4,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transaction;
-
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.mysql.jdbc.log.Log;
-import com.mysql.jdbc.log.LogFactory;
-
 import zlin.clothing.po.ClothingPO;
-import zlin.store.po.StorePO;
 
 
 
@@ -148,9 +143,124 @@ public class ClothingDao extends HibernateDaoSupport
 	    clothingpo =(ClothingPO)this.getHibernateTemplate().get(ClothingPO.class, CLOTHINGID);	    
 	    return clothingpo;		
 	}
+	
 	public List<ClothingPO> findAllClothing(){
 		List<ClothingPO> clothingList =  getHibernateTemplate().find("FROM ClothingPO");
 		return clothingList;
+	}
+	
+	/*
+	 * 
+	 * 实现模糊查询,允许输入的查询条件为空的情况
+	 * 
+	 * 
+	public List criteriaClothing(final ClothingPO clothingpo,final int offset,final int pageSize)
+	{	
+		
+		 List<ClothingPO> clothinglist = (ArrayList<ClothingPO>) getHibernateTemplate().execute(new HibernateCallback(){   
+				@Override
+				public Object doInHibernate(Session session) throws HibernateException,SQLException{   
+				List<ClothingPO> list=(List<ClothingPO>) session.createCriteria(ClothingPO.class).add(Example.create(clothingpo).ignoreCase().excludeNone().enableLike(MatchMode.ANYWHERE)).setFirstResult(offset).setMaxResults(pageSize).list();  
+				
+				return list;}  
+				});   
+		
+		 System.out.println("criterial dao clothinglist.size="+clothinglist.size());
+		return clothinglist;
+	}*/
+	
+	
+	public List criteriaClothing(ClothingPO clothingpo,final int offset,final int pageSize)
+	{	
+		
+		// List<ClothingPO> clothinglist = (ArrayList<ClothingPO>) getHibernateTemplate().execute(new HibernateCallback(){   
+		final String clothnum=clothingpo.getClothnum();//����
+		final String type=clothingpo.getType();//Ʒ��
+		final String color=clothingpo.getColor();//ɫ��
+		final String size=clothingpo.getSize();//����
+
+				HibernateTemplate ht = getHibernateTemplate();
+				List<ClothingPO> clothinglist = ht.executeFind(new HibernateCallback() {
+
+					@Override
+					public Object doInHibernate(Session session) throws HibernateException, SQLException {
+						Criteria criteria =  session.createCriteria(ClothingPO.class);
+						if(!clothnum.trim().equals("") && clothnum != null){
+							criteria.add(Restrictions.eq("clothnum", clothnum));
+						}
+						if(!type.trim().equals("") && type != null){
+							criteria.add(Restrictions.eq("type", type));
+						}
+						if(!color.trim().equals("") && color != null){
+							criteria.add(Restrictions.eq("color", color));
+						}
+						if(!size.trim().equals("") && size != null){
+							criteria.add(Restrictions.eq("size", size));
+						}
+						criteria.setMaxResults(pageSize);
+						criteria.setFirstResult(offset);
+						return criteria.list();
+					}
+				});
+	
+		
+		return clothinglist;
+	}
+	
+	
+	/*
+	public int criterialAllRows(final ClothingPO clothingpo)
+	{
+		
+		List<ClothingPO> clothinglist = (ArrayList<ClothingPO>) getHibernateTemplate().execute(new HibernateCallback(){   
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException,SQLException{   
+			List<ClothingPO> list=(List<ClothingPO>) session.createCriteria(ClothingPO.class).add(Example.create(clothingpo).ignoreCase().excludeNone().enableLike(MatchMode.ANYWHERE)).list();  
+			System.out.println("criterial dao in allrows");
+			return list;}  
+			});   
+		
+		System.out.println("clothinglist.size="+clothinglist.size());
+		
+		return clothinglist.size();
+		
+	}
+	*/
+	
+	public int criterialAllRows(ClothingPO clothingpo)
+	{
+		
+		final String clothnum=clothingpo.getClothnum();//����
+		final String type=clothingpo.getType();//Ʒ��
+		final String color=clothingpo.getColor();//ɫ��
+		final String size=clothingpo.getSize();//����
+		
+		HibernateTemplate ht = getHibernateTemplate();
+		List<ClothingPO> clothinglist = ht.executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				Criteria criteria =  session.createCriteria(ClothingPO.class);
+				if(!clothnum.trim().equals("") && clothnum != null){
+					criteria.add(Restrictions.eq("clothnum", clothnum));
+				}
+				if(!type.trim().equals("") && type != null){
+					criteria.add(Restrictions.eq("type", type));
+				}
+				if(!color.trim().equals("") && color != null){
+					criteria.add(Restrictions.eq("color", color));
+				}
+				if(!size.trim().equals("") && size != null){
+					criteria.add(Restrictions.eq("size", size));
+				}
+				
+				return criteria.list();
+			}
+		});
+
+
+		return clothinglist.size();
+		
 	}
 	
 }

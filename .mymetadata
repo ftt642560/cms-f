@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="cms2"
+  name="cms-f"
   id="myeclipse.1432699563965"
   context-root="/cms-final"
   j2ee-spec="6.0"
-  archive="cms2.war">
+  archive="cms-f.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

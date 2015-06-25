@@ -1,15 +1,11 @@
 package hjh.orderin.daoimpl;
 
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import hjh.orderin.dao.DeleteOrderInDAO;
 import hjh.orderin.domain.InOrder;
-import hjh.orderin.domain.InOrderDetail;
 
 public class DeleteOrderInDAOImpl implements DeleteOrderInDAO {
 	private SessionFactory sessionFactory;
