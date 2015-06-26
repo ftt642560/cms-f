@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		}
   		
   	
-  		//查询仓库之前，先对输入的条件进行验证
+  		//查询仓库之前，先对输入的条件进行验证,全部条件都要输入才进行查询
   		function querystore()
   		{
   			var storenum=document.getElementById("storenum").value;//获取storenum输入框的内容
@@ -151,22 +151,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		//模糊查询
 		function criterialclothing()
 		{
+		/*
 		var storenum=document.getElementById("storenum").value;//获取storenum输入框的内容
   		var storename=document.getElementById("storename").value;//获取storenamae输入框的内容
 		
 			
 			if(storenum=="" && storename=="")
 			{
-				window.location.href="<%=basePath%>/zlinstore/findallstore.action";
+				window.location.href="/zlinstore/findallstore.action";
 			}
 			
-			else{
+			else{*/
 			var targetForm=document.forms[0];
 				//动态修改表单的action属性
-				targetForm.action="zlinstore/criterialstore.action?storenum="+encodeURI(encodeURI(storenum))+
-				"&storename="+encodeURI(encodeURI(storename));
+				targetForm.action="zlinstore/criterialstore.action";
 				//document.forms[0].submit();
-				}
+				//}
 		}
   	
   		
@@ -204,11 +204,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <td class="textbar81" width="15%">仓库编号</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="hh" value="" style="width:210px" id="storenum">
+		<input type="text" name="storepo.storenum" value="" style="width:210px" id="storenum">
 		 </td>    
 	<td class="textbar81" width="15%">仓库名称</td>
 		<td class="textbar01" width="35%">			
-		<input type="text" name="hh" value="" style="width:210px" id="storename">	  </td>    
+		<input type="text" name="storepo.storename" value="" style="width:210px" id="storename">	  </td>    
 </tr>   
    
 </table>
@@ -380,7 +380,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </s:if>
             
             <s:if test="#session.storePageFunc=='criterialstore'">
-            		 <a  name="homepage" href="<%=basePath%>/zlinstore/criterialstore.action">首页</a>
+            		 <a  name="homepage" href="<%=basePath%>/zlinstore/criterialstore.action?page=0">首页</a>
            			&nbsp;&nbsp;&nbsp;
            		 	<a id="prepage" href="<%=basePath%>/zlinstore/criterialstore.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
             </s:if>

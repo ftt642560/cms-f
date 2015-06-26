@@ -195,6 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		//模糊查询
 		function criterialclothing()
 		{
+			/*
 			var clothnum=document.getElementById("clothnum").value;//获取clothnum输入框的内容
   			var type=document.getElementById("type").value;//获取type输入框的内容
 		
@@ -210,7 +211,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			if(clothnum=="" && type=="" && colortext=="请选择" && sizetext=="请选择")
 			{
-				window.location.href="<%=basePath%>/zlinclothing/findallclothing.action";
+				window.location.href="/zlinclothing/findallclothing.action";
 			}
 			
 			
@@ -224,11 +225,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				sizetext="";
 			}
 			
+			else{*/
 			var targetForm=document.forms[0];
 				//动态修改表单的action属性
-				targetForm.action="zlinclothing/criterialclothing.action?clothnum="+clothnum+
-				"&type="+encodeURI(encodeURI(type))+"&color="+encodeURI(encodeURI(colortext))+"&size="+sizetext;
+				targetForm.action="zlinclothing/criterialclothing.action";
 				//document.forms[0].submit();
+				//}
 		}
 		
   </script>
@@ -259,32 +261,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <td class="textbar81" width="15%">货号</td>
 		<td class="textbar01" width="35%">			
-			<input type="text" name="hh" value="" style="width:210px "  id="clothnum" />	 
+			<input type="text" name="clothingpo.clothnum" value="" style="width:210px "  id="clothnum" />	 
 		</td>    
 	<td class="textbar81" width="15%">品名</td>
 		<td class="textbar01" width="35%">			
-			<input type="text" name="hh" value="" style="width:210px " id="type" />	  
+			<input type="text" name="clothingpo.type" value="" style="width:210px " id="type" />	  
 		</td>    
 </tr>   
    <tr> 
             <td width="15%" class="textbar81">色号</td> 
             <td class="textbar01" width="35%"> 
-            <select name="" style="width:210px " id="color"> 
+            <select name="clothingpo.color" style="width:210px " id="color"> 
                <option value="" selected="selected">请选择</option> 
-                <option value="1">大红色</option> 
-                <option value="2">浅红色</option> 
-                <option value="3">紫红色</option> 
-				<option value="4">纯白色</option> 
-                <option value="5">米白色</option> 
-				<option value="6">深蓝色</option> 
-                <option value="7">淡蓝色</option> 
-				<option value="8">黑色</option> 
-                <option value="9">棕色</option> 
+                <option value="大红色">大红色</option> 
+                <option value="浅红色">浅红色</option> 
+                <option value="紫红色">紫红色</option> 
+				<option value="纯白色">纯白色</option> 
+                <option value="米白色">米白色</option> 
+				<option value="深蓝色">深蓝色</option> 
+                <option value="淡蓝色">淡蓝色</option> 
+				<option value="黑色">黑色</option> 
+                <option value="棕色">棕色</option> 
               </select>
               </td> 
          
             <td width="15%" class="textbar81">尺码</td> 
-            <td class="textbar01" width="35%"> <select name="" style="width:210px " id="size"> 
+            <td class="textbar01" width="35%"> 
+            	<select name="clothingpo.size" style="width:210px " id="size"> 
                <option value="" selected="selected">请选择</option> 
                 <option value="150">150</option> 
                 <option value="155">155</option> 
@@ -489,7 +492,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </s:if>
             
              <s:if test="#session.clothingPageFunc=='criterialclothing'">
-            		 <a  name="homepage" href="<%=basePath%>/zlinclothing/criterialclothing.action">首页</a>
+            		 <a  name="homepage" href="<%=basePath%>/zlinclothing/criterialclothing.action?page=0">首页</a>
            			&nbsp;&nbsp;&nbsp;
            		 	<a id="prepage" href="<%=basePath%>/zlinclothing/criterialclothing.action?page=<s:property value="#session.pageBean.currentPage - 1"/>" >上一页</a>
             </s:if>

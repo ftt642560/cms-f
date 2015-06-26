@@ -167,6 +167,8 @@ public class StoreDao extends HibernateDaoSupport
 					criteria.add(Restrictions.eq("storename", storename));
 				}
 				
+				criteria.setMaxResults(pageSize);
+				criteria.setFirstResult(offset);
 				
 				return criteria.list();
 			}

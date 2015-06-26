@@ -467,8 +467,10 @@ private String huangjinhao = "shuaiguo";
 		
 	}*/
 	
+	//模糊查询
 	public String criterialClothing()
 	{
+		/*
 		HttpServletRequest request=null;
 		request=ServletActionContext.getRequest();
 		clothnum=request.getParameter("clothnum");
@@ -476,8 +478,6 @@ private String huangjinhao = "shuaiguo";
 		color=request.getParameter("color");
 		size=request.getParameter("size");
 		
-		
-	
 		try { 
 			color = java.net.URLDecoder.decode(color,"UTF-8"); 
 			//color = java.net.URLDecoder.decode(color,"UTF-8"); 
@@ -494,9 +494,22 @@ private String huangjinhao = "shuaiguo";
 		clothingpo.setColor(color);
 		clothingpo.setSize(size);
 		clothingpo.setType(type);
+		*/
+		
+		if(clothingpo.getColor().equals("请选择"))
+		{
+			clothingpo.setColor("");
+			
+		}
+		
+		if(clothingpo.getSize().equals("请选择"))
+		{
+			
+			clothingpo.setSize("");
+		}
 		
 		
-		System.out.println("criterial action clothnum="+clothnum+",type="+type+",color="+color+",size="+size);
+		System.out.println("color="+clothingpo.getColor());
 			
 			clothingPageFunc="criterialclothing";
 			 ActionContext.getContext().getSession().put("clothingPageFunc",clothingPageFunc);

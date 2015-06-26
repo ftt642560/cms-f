@@ -336,21 +336,23 @@ public class StoreAction {
 		storename=request.getParameter("storename");
 		
 		
-		
-	
+		/*
 		try { 
+			
 			storename = java.net.URLDecoder.decode(storename,"UTF-8"); 
 			//color = java.net.URLDecoder.decode(color,"UTF-8"); 
-			
+
 			storenum = java.net.URLDecoder.decode(storenum,"UTF-8");
 			//type = java.net.URLDecoder.decode(type,"UTF-8");
+			
 			} catch (UnsupportedEncodingException e1) { 
 			e1.printStackTrace(); 
 			} 
 		
+		System.out.println("decode storenum="+storename);
 		storepo.setStorenum(storenum);
 		storepo.setStorename(storename);
-		
+		*/
 		
 			storePageFunc="criterialstore";
 			 ActionContext.getContext().getSession().put("storePageFunc",storePageFunc);
@@ -359,7 +361,7 @@ public class StoreAction {
 			// pageBean=clothingservice.findClothing(clothnum, type, color, size, 10, page);
 			 
 			 pageBean=storeservice.criteriaStore(storepo, 10, page);
-			 
+			 System.out.println("storepo.storenum="+storepo.getStorenum());
 			 ActionContext.getContext().getSession().put("pageBean",pageBean);
 			 
 			storelist=pageBean.getList();
