@@ -450,11 +450,32 @@ function back()
             	<input type="text" value="" size="15" style="width:210px " id="clothingMaterial"> 
            	</td> 
           </tr> 
+          
+          <script language="JavaScript" type="text/javascript">
+   			//对输入的金钱进行控制
+			function clearNoNum(obj)
+			{
+				//先把非数字的都替换掉，除了数字和.
+				obj.value = obj.value.replace(/[^\d.]/g,"");
+				//必须保证第一个为数字而不是.
+				obj.value = obj.value.replace(/^\./g,"");
+				//保证只有出现一个.而没有多个.
+				obj.value = obj.value.replace(/\.{2,}/g,".");
+				//保证.只出现一次，而不能出现两次以上
+				obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+				//小数点后只能输入两位数
+				obj.value=obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".").replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');
+          
+				 
+			}
+			</script>
+          
+          
           <tr> 
             <td width="15%" class="textbar81">出厂价</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="" size="15" style="width:210px " id="factoryPrice"> </td> 
+            <td class="textbar01" width="35%"> <input type="text" value="" size="15" style="width:210px " id="factoryPrice" onkeyup="clearNoNum(this);"> </td> 
             <td class="textbar81" width="15%">零售价</td> 
-            <td class="textbar01" width="35%"> <input type="text" value="" size="15" style="width:210px " id="retailPrice"> </td> 
+            <td class="textbar01" width="35%"> <input type="text" value="" size="15" style="width:210px " id="retailPrice" onkeyup="clearNoNum(this);"> </td> 
           </tr> 
           
  

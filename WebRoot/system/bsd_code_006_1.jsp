@@ -320,7 +320,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            <tr>        	          
 				<td class="textbar81" width="15%">联系电话</td>
 				<td class="textbar01" width="85%">
-		 <input type="text" value="" size="15" id="tele">								
+		 <input type="text" value="" size="15" id="tele"   onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">								
 				</td>         		
 		         </tr>  
 		         
