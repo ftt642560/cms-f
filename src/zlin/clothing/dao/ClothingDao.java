@@ -20,7 +20,7 @@ import zlin.clothing.po.ClothingPO;
 public class ClothingDao extends HibernateDaoSupport
 {
 
-	//��ȡȫ����Ϣ
+	//获取一共有多少条数据
 	public int getAllRowCount(String hql)
     {
 			int allRows = 0;  
@@ -35,8 +35,10 @@ public class ClothingDao extends HibernateDaoSupport
 	
 	
 	/**
-     * ʹ��hibernate�ṩ�ķ�ҳ���ܣ��õ���ҳ��ʾ�����
-     * ��ѯȫ����Ϣ
+     * 功能：查找全部的货号信息
+     * 参数：offset,pageSize
+     * 返回值：List resultlist
+     * 
      */
 	public List findAllClothing(final int offset,final int pageSize)throws Exception
 	{
@@ -59,8 +61,10 @@ public class ClothingDao extends HibernateDaoSupport
 	
 	
 	/**
-     * ʹ��hibernate�ṩ�ķ�ҳ���ܣ��õ���ҳ��ʾ�����
-     * ��������ѯ��Ϣ
+     * 功能：按照前台输入的货号，品号，颜色，大小进行查询
+     * 参数：CLOTHNUM,TYPE,COLOR,SIZE，offset,pageSize
+     * 返回值：List resultlist
+     * 
      */
 
 	public List findClothing(final String CLOTHNUM,final String TYPE,final String COLOR,final String SIZE,final int offset,final int pageSize)throws Exception
@@ -96,7 +100,12 @@ public class ClothingDao extends HibernateDaoSupport
 	
 	
 	
-	//�½�����(����һ�����Ŷ���)���ػ���ID
+	/*
+	 * 功能：新建货号信息
+	 * 参数：ClothingPO CLOTHINGPO
+	 * 返回值：Long id
+	 * 
+	 * */
 	public Long newClothing(ClothingPO CLOTHINGPO)throws Exception
 	{
 		System.out.println("this is newclothing dao");
@@ -121,7 +130,12 @@ public class ClothingDao extends HibernateDaoSupport
 	
 	
 	
-	//ɾ�����(����һ�����Ŷ����ID),����ɾ�������
+	/*
+	 * 功能：删除货号信息
+	 * 参数:Long CLOTHINGID
+	 * 返回值：无
+	 * 
+	 * */
 	public void deleteClothing(Long CLOTHINGID)throws Exception
 	{
 		this.getHibernateTemplate().delete(this.getHibernateTemplate().get(ClothingPO.class, CLOTHINGID));
@@ -129,14 +143,24 @@ public class ClothingDao extends HibernateDaoSupport
 	}
 	
 	
-	//���»�����Ϣ
+	/*
+	 * 功能：更新货号信息
+	 * 参数：ClothingPO CLOTHINGPO
+	 * 返回值:无
+	 * 
+	 * */
 	public void updateClothing(ClothingPO CLOTHINGPO)throws Exception
 	{	    
 	    this.getHibernateTemplate().update(CLOTHINGPO);	    	 
 	}
 	
 	
-	//���»�����Ϣ��ʱ����Ҫ������Ҫ���µĻ�����Ϣ
+	/*
+	 * 功能：查找一个货号信息
+	 * 参数:Long CLOTHINGID
+	 * 返回值:ClothingPO clothingpo
+	 * 
+	 * */
 	public ClothingPO findAClothing(Long CLOTHINGID)throws Exception
 	{
 	    ClothingPO clothingpo = new ClothingPO();   
@@ -170,6 +194,12 @@ public class ClothingDao extends HibernateDaoSupport
 	}*/
 	
 	
+	/*
+	 * 功能：模糊查询，模糊查询允许查询条件为空的情况
+	 * 参数：ClothingPO,offset,pageSize
+	 * 返回值:List clothinglist
+	 * 
+	 * */
 	public List criteriaClothing(ClothingPO clothingpo,final int offset,final int pageSize)
 	{	
 		
@@ -227,13 +257,18 @@ public class ClothingDao extends HibernateDaoSupport
 	}
 	*/
 	
+	/*
+	 * 功能：通过模糊查询时，查询出多少条数据
+	 * 参数：ClothingPO clothingpo
+	 * 返回值：int clothinglist.size()
+	 * */
 	public int criterialAllRows(ClothingPO clothingpo)
 	{
 		
-		final String clothnum=clothingpo.getClothnum();//����
-		final String type=clothingpo.getType();//Ʒ��
-		final String color=clothingpo.getColor();//ɫ��
-		final String size=clothingpo.getSize();//����
+		final String clothnum=clothingpo.getClothnum();//货号
+		final String type=clothingpo.getType();//品名
+		final String color=clothingpo.getColor();//颜色
+		final String size=clothingpo.getSize();//大小
 		
 		HibernateTemplate ht = getHibernateTemplate();
 		List<ClothingPO> clothinglist = ht.executeFind(new HibernateCallback() {

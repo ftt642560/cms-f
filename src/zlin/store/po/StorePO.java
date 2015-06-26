@@ -2,11 +2,11 @@ package zlin.store.po;
 
 public class StorePO {
 	private long id; //id
-	private String storenum;//²Ö¿â±àºÅ
-	private String storename;//²Ö¿âÃû³Æ
-	private String linkman;//ÁªÏµÈË
-	private String tele;//ÁªÏµµç»°
-	private String storagevolume;//²Ö´¢Á¿
+	private String storenum;//ä»“åº“ç¼–å·
+	private String storename;//ä»“åº“å
+	private String linkman;//è”ç³»äºº
+	private String tele;//è”ç³»ç”µè¯
+	private String storagevolume;//ä»“å‚¨é‡
 	public long getId() {
 		return id;
 	}

@@ -18,7 +18,7 @@ import zlin.store.po.StorePO;
 
 public class StoreDao extends HibernateDaoSupport
 {
-	//��ȡȫ����Ϣ
+	//获得数据库一共有多少条信息
 	public int getAllRowCount(String hql)
     {
 			int allRows = 0;           
@@ -27,7 +27,12 @@ public class StoreDao extends HibernateDaoSupport
         	return allRows;
     }
 	
-	//����ҳ��ѯȫ���ֿ���Ϣ
+	/*
+	 * 功能：查找全部的货号信息，并进行分页
+	 * 参数:final int offset,final int pageSize
+	 * 返回值:List resultlist
+	 * 
+	 * */
 	public List findAllStore(final int offset,final int pageSize)throws Exception
 	{
 
@@ -47,7 +52,13 @@ public class StoreDao extends HibernateDaoSupport
 	}
 	
 	
-	//���������Ҳֿ���Ϣ
+	/*
+	 * 功能：按照条件查找仓库
+	 * 参数：final String STORENUM,final String STORENAME,final int offset,final int pageSize
+	 * 返回值:List resultlist
+	 * 前提条件：输入的4个参数不能为空
+	 * 
+	 * */
 	public List findStore(final String STORENUM,final String STORENAME,final int offset,final int pageSize)throws Exception
 	{
 		List resultlist=new ArrayList<StorePO>();
@@ -72,7 +83,12 @@ public class StoreDao extends HibernateDaoSupport
 		
 	}
 	
-	//�½��ֿ�
+	/*
+	 * 功能：新建仓库
+	 * 参数：StorePO STOREPO
+	 * 返回值：Long id
+	 * 
+	 * */
 	public Long newStore(StorePO STOREPO)throws Exception
 	{
 		StorePO storepo=new StorePO();
@@ -90,14 +106,24 @@ public class StoreDao extends HibernateDaoSupport
 	}
 	
 	
-	//ɾ��ֿ�
+	/*
+	 * 功能：删除仓库
+	 * 参数：Long STOREID
+	 * 返回值：无
+	 * 
+	 * */
 	public void deleteStore(Long STOREID)throws Exception
 	{		
 		this.getHibernateTemplate().delete(this.getHibernateTemplate().get(StorePO.class, STOREID));
 		
 	}
 	
-	//����ID��ѯһ���ֿ�
+	/*
+	 * 功能：按照ID查找一个仓库信息
+	 * 参数：Long STOREID
+	 * 返回值：StorePO storepo
+	 * 
+	 * */
 	public StorePO findAStore(Long STOREID)throws Exception
 	{
 		StorePO storepo=new StorePO();
@@ -105,19 +131,36 @@ public class StoreDao extends HibernateDaoSupport
 		return storepo;
 	}
 	
-	//�޸Ĳֿ���Ϣ
+	/*
+	 * 功能：更新仓库信息
+	 * 参数：StorePO storepo
+	 * 返回值：无
+	 * 
+	 * */
 	public void updateStore(StorePO storepo)throws Exception
 	{
 		 this.getHibernateTemplate().update(storepo);
 	}
 	
+	
+	/*
+	 * 功能：查找全部仓库信息
+	 * 参数：无
+	 * 返回值：List 
+	 * 
+	 * */
 	public List<StorePO> findAllStore(){
 		return getHibernateTemplate().find("FROM StorePO");
 	}
 	
 	
 	
-	//模糊查询时，获得所有的数据
+	/*
+	 * 功能：模糊查询时，获得查询结果个数
+	 * 参数：StorePO storepo
+	 * 返回值：int storelist.size()
+	 * 
+	 * */
 	public int criterialAllRows(StorePO storepo)
 	{
 		
@@ -147,7 +190,12 @@ public class StoreDao extends HibernateDaoSupport
 		
 	}
 	
-	//模糊查询
+	/*
+	 * 功能：模糊查询，允许查询条件为空的情况，并进行分页
+	 * 参数：StorePO storepo,final int offset,final int pageSize
+	 * 返回值：int storelist
+	 * 
+	 * */
 	public List criteriaStore(StorePO storepo,final int offset,final int pageSize)
 	{	
 		

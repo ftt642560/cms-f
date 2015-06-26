@@ -14,7 +14,7 @@ import zlin.clothing.vo.PageBean;
 public class ClothingAction extends ActionSupport{
 private String huangjinhao = "shuaiguo";
 	private ClothingService clothingservice;
-	private ArrayList clothinglist;//ҳ���в�ѯ�Ľ��
+	private ArrayList clothinglist;//货号列表
 	
 	private String clothnum;
 	private String type;
@@ -28,7 +28,7 @@ private String huangjinhao = "shuaiguo";
 	
 	private PageBean pageBean;
 	
-	private String clothingPageFunc;//�ж�clothing1001.jspҳ����ͨ���Ǹ���ѯ���Ĺ���
+	private String clothingPageFunc;//用于判定页面的功能
 	
 	public ClothingService getClothingservice() {
 		return clothingservice;
@@ -45,7 +45,7 @@ private String huangjinhao = "shuaiguo";
 
 
 	private ClothingPO clothingpo;
-	private int page;//���ڷ�ҳ
+	private int page;
 	
 	
 	public int getPage() {
@@ -78,7 +78,7 @@ private String huangjinhao = "shuaiguo";
 	{
 		//clothingservice=new ClothingService();
 		
-		//��ʾÿҳ��ʾ5����¼��page��ʾ��ǰ��ҳ
+		
         pageBean = clothingservice.findAllClothing(10, page);
         clothinglist=pageBean.getList();
        // HttpServletRequest request = ServletActionContext.getRequest();
@@ -95,7 +95,7 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	//��ѯȫ����clothing
+	//查找所有的货号
 	public String findAllClothing()
 	{	
 		//System.out.println("this is findallclothing action");
@@ -125,7 +125,7 @@ private String huangjinhao = "shuaiguo";
 	*/
 	
 	
-	//��������ѯclothing
+	//按照前台传进来的4个参数进行查找，每个参数不能为空查询。
 	public String findClothing()
 	{
 		//ActionContext ctx=ActionContext.getContext();
@@ -188,7 +188,7 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	//��������ѯclothing
+	//按条件查找货号，还没有进行分页的查询
 	public String findClothing()
 	{
 		//ActionContext ctx=ActionContext.getContext();
@@ -239,7 +239,7 @@ private String huangjinhao = "shuaiguo";
 	}
 	*/
 	
-	//�½�һ������
+	//新建货号
 	public String newClothing()
 	{
 		System.out.println("this is new clothing action");
@@ -314,7 +314,7 @@ private String huangjinhao = "shuaiguo";
 	}
 	
 	
-	//ɾ��һ������
+	//删除货号
 	public String deleteClothing()
 	{
 		HttpServletRequest request=null;
@@ -326,7 +326,7 @@ private String huangjinhao = "shuaiguo";
 		
 	}
 	
-	//����ID�����ҵ�һ������
+	//查找一个货号
 	public String findAClothing()
 	{
 		HttpServletRequest request=null;
@@ -343,7 +343,7 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	
-	//����һ��������Ϣ
+	//更新货号
 	public String updateClothing()
 	{
 		//clothingservice=new ClothingService();
@@ -383,7 +383,7 @@ private String huangjinhao = "shuaiguo";
 					e1.printStackTrace(); 
 			} 
 		
-		//��session������ȡ����Ҫ�����Ϣ��clothingpo�����IDֵ��
+		//危险操作：将clothingpo放入session中，为了将信息发送到另一个页面进行修改信息功能，用完后要立即清除
 		ClothingPO c=new ClothingPO();
 		c=(ClothingPO)ActionContext.getContext().getSession().get("clothingpo");		
 		clothingpo.setId(c.getId());
@@ -406,13 +406,10 @@ private String huangjinhao = "shuaiguo";
 	
 	
 	/*
-	 * ����clothing��ʱ�򣬴�ǰ̨����һ��ID�ŵ���̨�����в�ѯ��Ҫ���µ�clothingpo����
-	 * �Ѳ�ѯ���Ľ�����session�У�Ȼ����ǰ̨����clothingpo����ÿ���������и�ֵ
-	 * ���ԣ������������ѯ���Ķ���֮�󣬾���Ҫ�����session���Ƴ�(����updateClothing����Ƴ�)
-	 * ���ԣ�����ɹ����Ƴ�һ�Σ��ڷ��ص�ʱ��Ҳ��Ҫ�Ƴ�һ��
+	 * 前面为了进行货号信息更新时，讲clothingpo放入seesion中，
+	 * 在用完之后要立即将session中的clothingpo清除
 	 * 
 	 * 
-	 * ���ص�ʱ�򣬵��ô˺������session�е�clothingpo�Ķ���
 	 * */
 	
 	public String cleanDataInSession()
@@ -467,7 +464,7 @@ private String huangjinhao = "shuaiguo";
 		
 	}*/
 	
-	//模糊查询
+	//模糊查询，允许查询的条件为空的情况
 	public String criterialClothing()
 	{
 		/*

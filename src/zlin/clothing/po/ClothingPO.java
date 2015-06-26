@@ -2,14 +2,14 @@ package zlin.clothing.po;
 
 public class ClothingPO {
 	private long id; //id
-	private String clothnum; //����
-	private String type; //Ʒ��
-	private String color; //��ɫ
-	private String size; //��С 
-	private String fabric; //����
-	private String clothingMaterial;//����
-	private String factoryPrice; //������
-	private String retailPrice;//���ۼ�
+	private String clothnum; //货号
+	private String type; //品名
+	private String color; //颜色
+	private String size; //大小
+	private String fabric; //面料
+	private String clothingMaterial;//里料
+	private String factoryPrice; //成本价
+	private String retailPrice;//零售价
 	public long getId() {
 		return id;
 	}

@@ -16,16 +16,16 @@ import zlin.store.service.StoreService;
 public class StoreAction {
 	private PageBean pageBean;
 	private StoreService storeservice;
-	private ArrayList storelist;//ҳ���в�ѯ�Ľ��
-	private String storePageFunc;//�ж�clothing1001.jspҳ����ͨ���Ǹ���ѯ���Ĺ���
-	private int page;//���ڷ�ҳ
+	private ArrayList storelist;//仓库列表
+	private String storePageFunc;//用于判断前台页面功能
+	private int page;////用于分页
 	private StorePO storepo;
 	
 	private String storenum;
 	private String storename;
-	private String linkman;//��ϵ��
-	private String tele;//��ϵ�绰
-	private String storagevolume;//�ִ���
+	private String linkman;//联系人
+	private String tele;//联系电话
+	private String storagevolume;//仓储量
 	private String id;
 	
 	
@@ -131,11 +131,11 @@ public class StoreAction {
 	}
 
 	
-	//����ȫ���ֿ���Ϣ
+	//查找全部仓库信息
 	public String findAllStore()
 	{
 		
-		//��ʾÿҳ��ʾ5����¼��page��ʾ��ǰ��ҳ
+		//表示每页显示5条记录，page表示当前网页
         pageBean = storeservice.findAllStore(10, page);
         storelist=pageBean.getList();
        // HttpServletRequest request = ServletActionContext.getRequest();
@@ -150,7 +150,7 @@ public class StoreAction {
 		
 	}
 	
-	//������������Ϣ
+	//按条件查找信息
 	public String findStore()
 	{
 		HttpServletRequest request=null;
@@ -178,7 +178,7 @@ public class StoreAction {
 			return "success";
 		}
 	
-	//�½��ֿ�
+	//新建仓库
 	public String newStore()
 	{
 		HttpServletRequest request=null;
@@ -236,7 +236,7 @@ public class StoreAction {
 	
 	}
 	
-	//ɾ��ֿ�
+	//删除仓库
 	public String deleteStore()
 	{
 		HttpServletRequest request=null;
@@ -247,7 +247,7 @@ public class StoreAction {
 		return "success";
 	}
 	
-	//����ID������һ���ֿ���Ϣ,���ڸ�����Ϣ
+	//查找一个仓库,并且放到session中用于仓库信息的修改
 	public String findAStore()
 	{
 		HttpServletRequest request=null;
@@ -262,7 +262,7 @@ public class StoreAction {
 		return "success";
 	}
 	
-	//�޸Ļ�����Ϣ
+	//更新仓库信息
 	public String updateStore()
 	{
 		HttpServletRequest request=null;
@@ -297,7 +297,7 @@ public class StoreAction {
 		storepo.setTele(tele);
 		storepo.setStoragevolume(storagevolume);
 		
-		//��session������ȡ����Ҫ�����Ϣ��storepo�����IDֵ��
+		//从session对象中取得需要更改信息的storepo对象的ID值，
 		StorePO s=new StorePO();
 		s=(StorePO)ActionContext.getContext().getSession().get("storepo");		
 		storepo.setId(s.getId());
@@ -310,13 +310,13 @@ public class StoreAction {
 	
 	
 	/*
-	 * ����storepo��ʱ�򣬴�ǰ̨����һ��ID�ŵ���̨�����в�ѯ��Ҫ���µ�clothingpo����
-	 * �Ѳ�ѯ���Ľ�����session�У�Ȼ����ǰ̨����storepo����ÿ���������и�ֵ
-	 * ���ԣ������������ѯ���Ķ���֮�󣬾���Ҫ�����session���Ƴ�(����updatestore����Ƴ�)
-	 * ���ԣ�����ɹ����Ƴ�һ�Σ��ڷ��ص�ʱ��Ҳ��Ҫ�Ƴ�һ��
+	 * 更新storepo的时候，从前台传过一个ID号到后台，进行查询需要更新的clothingpo对象。
+	 * 把查询到的结果放入session中，然后在前台调用storepo，对每个输入框进行赋值
+	 * 所以，用完了这个查询结果的对象之后，就需要把它从session中移除(即在updatestore最后移除)
+	 * 所以，保存成功，移除一次，在返回的时候，也需要移除一次
 	 * 
 	 * 
-	 * ���ص�ʱ�򣬵��ô˺������session�е�storepo�Ķ���
+	 * 返回的时候，调用此函数清空session中的storepo的对象
 	 * */
 	
 	public String cleanStoreInSession()
@@ -327,7 +327,7 @@ public class StoreAction {
 	}
 	
 	
-	//模糊查询
+	//模糊查询,允许查询的条件为空的情况
 	public String criterialStore()
 	{
 		HttpServletRequest request=null;

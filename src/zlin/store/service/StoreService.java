@@ -34,8 +34,8 @@ public class StoreService {
 	}
 	
 	/**
-     * pageSizeΪÿҳ��ʾ�ļ�¼��
-     * pageΪ��ǰ��ʾ����ҳ
+     * pageSize
+     * page
 	 * @throws Exception 
      */
 	public PageBean findAllStore(int pageSize, int page)
@@ -68,7 +68,7 @@ public class StoreService {
 		
 	}
 	
-	//����������
+	//按照条件查找仓库信息，查找条件不能为空
 	public PageBean findStore(String STORENUM,String STORENAME,int pageSize, int page)
 	{
 		PageBean pageBean=new PageBean();
@@ -104,7 +104,7 @@ public class StoreService {
 	}
 	
 	
-	//�½��ֿ�
+	//新建仓库
 	public Long newStore(StorePO STOREPO)
 	{
 		StorePO storepo=new StorePO();
@@ -125,7 +125,7 @@ public class StoreService {
 		return id;
 	}
 	
-	//ɾ��һ���ֿ�
+	//删除仓库
 	public void deleteStore(Long STOREID)
 	{
 		try{
@@ -138,7 +138,7 @@ public class StoreService {
 	}
 	
 	
-	//����һ���ֿ���Ϣ
+	//查找一个仓库
 	public StorePO findAStore(Long STOREID)
 	{
 		try{
@@ -151,7 +151,7 @@ public class StoreService {
 	}
 	
 	
-	//����һ���ֿ���Ϣ
+	//更细仓库
 	public void updateStore(StorePO storepo)
 	{
 		try{
@@ -167,7 +167,7 @@ public class StoreService {
 	}
 	
 	
-	//模糊查询
+	//模糊查询，允许查询条件为空的情况
 	public PageBean criteriaStore(StorePO STOREPO,int pageSize, int page)
 	{
 				

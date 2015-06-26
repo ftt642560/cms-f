@@ -39,8 +39,8 @@ public class ClothingService {
 	}
 
 	/**
-     * pageSizeΪÿҳ��ʾ�ļ�¼��
-     * pageΪ��ǰ��ʾ����ҳ
+     * pageSize
+     * page
 	 * @throws Exception 
      */
 	public PageBean findAllClothing(int pageSize, int page)
@@ -166,7 +166,7 @@ public class ClothingService {
 	}
 	*/
 	
-	//�½�һ������
+	//新建货号信息
 	public Long newClothing(ClothingPO CLOTHINGPO)
 	{
 		System.out.println("this is newclothing service");
@@ -198,7 +198,7 @@ public class ClothingService {
 	
 	
 	
-	//ɾ��һ��clothing
+	//删除货号信息
 	public void deleteClothing(Long CLOTHINGID)
 	{
 
@@ -211,7 +211,7 @@ public class ClothingService {
 		}
 	}
 	
-	//����һ��clothing
+	//更新货号信息
 	public void updateClothing(ClothingPO clothingpo)
 	{
 		try{
@@ -224,7 +224,7 @@ public class ClothingService {
 	}
 	
 	
-	//����һ����Ϣ��ʱ�򣬲��ҵ���Ҫ���µ�һ����Ϣ
+	//查找一个clothingpo
 	public ClothingPO findAClothing(Long CLOTHINGID)
 	{
 		try{
