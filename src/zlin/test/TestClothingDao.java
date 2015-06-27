@@ -8,6 +8,9 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import zlin.clothing.dao.ClothingDao;
 import zlin.clothing.po.ClothingPO;
@@ -17,7 +20,10 @@ public class TestClothingDao {
 	private static ClothingDao clothingdao;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		clothingdao=new ClothingDao();
+		       ApplicationContext ctx = new FileSystemXmlApplicationContext(  
+		                "WebRoot/WEB-INF/applicationContext.xml");  
+		       clothingdao = (ClothingDao )ctx.getBean("clothingdao");   
+		//clothingdao=new ClothingDao();
 	}
 
 	@AfterClass
@@ -25,27 +31,27 @@ public class TestClothingDao {
 		clothingdao=null;
 	}
 
-	
+	@Test
 	public void testGetAllRowCount() {
 		//fail("Not yet implemented");
 		ClothingPO clothingpo1=new ClothingPO();
 		clothingpo1.setClothnum("10");
-		clothingpo1.setColor("¥Û∫Ï…´");
+		clothingpo1.setColor("Â§ßÁ∫¢Ëâ≤");
 		clothingpo1.setFabric("fabric");
 		clothingpo1.setClothingMaterial("material");
 		clothingpo1.setSize("180");
-		clothingpo1.setType("∂ÃøÓø„◊”");
+		clothingpo1.setType("ÈïøÊ¨æÂ§ñÂ•ó");
 		clothingpo1.setFactoryPrice("800");
 		clothingpo1.setRetailPrice("200");
 		
 		
 		ClothingPO clothingpo2=new ClothingPO();
 		clothingpo2.setClothnum("20");
-		clothingpo2.setColor("«≥∫Ï…´");
+		clothingpo2.setColor("Á≤âÁ∫¢Ëâ≤");
 		clothingpo2.setFabric("fabric");
 		clothingpo2.setClothingMaterial("material");
 		clothingpo2.setSize("150");
-		clothingpo2.setType("≥§øÓø„◊”");
+		clothingpo2.setType("Áü≠Ê¨æË£§Â≠ê");
 		clothingpo2.setFactoryPrice("300");
 		clothingpo2.setRetailPrice("100");
 		
@@ -84,16 +90,16 @@ public class TestClothingDao {
 		{
 			ClothingPO clothingpo1=new ClothingPO();
 			clothingpo1.setClothnum("1");
-			clothingpo1.setColor("¥Û∫Ï…´");
+			clothingpo1.setColor("Â§ßÁ∫¢Ëâ≤");
 			clothingpo1.setFabric("fabric");
 			clothingpo1.setClothingMaterial("material");
 			clothingpo1.setSize("180");
-			clothingpo1.setType("∂ÃøÓø„◊”");
+			clothingpo1.setType("ÈïøÊ¨æÂ§ñÂ•ó");
 			clothingpo1.setFactoryPrice("800");
 			clothingpo1.setRetailPrice("200");
 			
 			Long id1=clothingdao.newClothing(clothingpo1);
-			resultlist=clothingdao.findClothing("1", "∂ÃøÓø„◊”","¥Û∫Ï…´","180", 0, 10);
+			resultlist=clothingdao.findClothing("1", "ÈïøÊ¨æÂ§ñÂ•ó", "Â§ßÁ∫¢Ëâ≤", "180", 0, 10);
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -107,11 +113,11 @@ public class TestClothingDao {
 		//fail("Not yet implemented");
 		ClothingPO clothingpo2=new ClothingPO();
 		clothingpo2.setClothnum("2");
-		clothingpo2.setColor("«≥∫Ï…´");
+		clothingpo2.setColor("Â§©ËìùËâ≤");
 		clothingpo2.setFabric("fabric");
 		clothingpo2.setClothingMaterial("material");
 		clothingpo2.setSize("150");
-		clothingpo2.setType("≥§øÓø„◊”");
+		clothingpo2.setType("180");
 		clothingpo2.setFactoryPrice("300");
 		clothingpo2.setRetailPrice("100");
 		try
@@ -133,11 +139,11 @@ public class TestClothingDao {
 		{
 			ClothingPO clothingpo1=new ClothingPO();
 			clothingpo1.setClothnum("3");
-			clothingpo1.setColor("¥Û∫Ï…´");
+			clothingpo1.setColor("Ê∑±Á¥´Ëâ≤");
 			clothingpo1.setFabric("fabric");
 			clothingpo1.setClothingMaterial("material");
 			clothingpo1.setSize("180");
-			clothingpo1.setType("∂ÃøÓø„◊”");
+			clothingpo1.setType("Áü≠Ê¨æË£ôÂ≠ê");
 			clothingpo1.setFactoryPrice("800");
 			clothingpo1.setRetailPrice("200");
 			Long id1=clothingdao.newClothing(clothingpo1);
@@ -167,21 +173,21 @@ public class TestClothingDao {
 		{
 			
 			clothingpo1.setClothnum("4");
-			clothingpo1.setColor("¥Û∫Ï…´");
+			clothingpo1.setColor("ÈªëËâ≤");
 			clothingpo1.setFabric("fabric");
 			clothingpo1.setClothingMaterial("material");
 			clothingpo1.setSize("180");
-			clothingpo1.setType("∂ÃøÓø„◊”");
+			clothingpo1.setType("Áü≠Ê¨æË£§Â≠ê");
 			clothingpo1.setFactoryPrice("800");
 			clothingpo1.setRetailPrice("200");
 			
 			Long id1=clothingdao.newClothing(clothingpo1);
 			
 			clothingpo2=clothingdao.findAClothing(id1);
-			clothingpo2.setColor("…Ó◊ÿ…´");
+			clothingpo2.setColor("Ê£ïËâ≤");
 			clothingdao.updateClothing(clothingpo2);
 			clothingpo3=clothingdao.findAClothing(id1);
-			assertEquals("…Ó◊ÿ…´",clothingpo3.getColor());
+			assertEquals("Ê£ïËâ≤",clothingpo3.getColor());
 			
 		}catch(Exception e)
 		{
@@ -200,11 +206,11 @@ public class TestClothingDao {
 		try
 		{
 			clothingpo1.setClothnum("5");
-			clothingpo1.setColor("…Ó≥»…´");
+			clothingpo1.setColor("ÊµÖËìùËâ≤");
 			clothingpo1.setFabric("fabric");
 			clothingpo1.setClothingMaterial("material");
 			clothingpo1.setSize("180");
-			clothingpo1.setType("∂ÃøÓø„◊”");
+			clothingpo1.setType("ÈïøÊ¨æË£ôÂ≠ê");
 			clothingpo1.setFactoryPrice("800");
 			clothingpo1.setRetailPrice("200");
 			

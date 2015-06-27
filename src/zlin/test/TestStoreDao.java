@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 
 import zlin.store.dao.StoreDao;
@@ -18,7 +20,10 @@ public class TestStoreDao {
 	private static StoreDao storedao;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		storedao=new StoreDao();
+		 ApplicationContext ctx = new FileSystemXmlApplicationContext(  
+	                "WebRoot/WEB-INF/applicationContext.xml");  
+	       storedao = (StoreDao)ctx.getBean("storedao");   
+		//storedao=new StoreDao();
 	}
 
 	@AfterClass
@@ -26,20 +31,20 @@ public class TestStoreDao {
 		storedao=null;
 	}
 
-	
+	@Test
 	public void testGetAllRowCount() {
 		//fail("Not yet implemented");
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("1009");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("小方");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
 		StorePO storepo2=new StorePO();
 		storepo2.setStorenum("1010");
-		storepo2.setStorename("��ɽ�ֿ�");
-		storepo2.setLinkman("С��");
+		storepo2.setStorename("高邮仓库");
+		storepo2.setLinkman("小李");
 		storepo2.setTele("1369082901");
 		storepo2.setStoragevolume("300");
 		
@@ -62,15 +67,15 @@ public class TestStoreDao {
 		List resultlist = new ArrayList<StorePO>();
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2009");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("小刘");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
 		StorePO storepo2=new StorePO();
 		storepo2.setStorenum("2010");
-		storepo2.setStorename("��ɽ�ֿ�");
-		storepo2.setLinkman("С��");
+		storepo2.setStorename("高邮仓库");
+		storepo2.setLinkman("小张");
 		storepo2.setTele("1369082901");
 		storepo2.setStoragevolume("300");
 		
@@ -95,15 +100,15 @@ public class TestStoreDao {
 		List resultlist=new ArrayList<StorePO>();
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2011");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("啊啊仓库");
+		storepo1.setLinkman("小赵");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
 	
 		try{
 			Long id=storedao.newStore(storepo1);
-			resultlist=storedao.findStore("2009", "���ʲֿ�", 0, 10);
+			resultlist=storedao.findStore("2010","高邮仓库",0, 10);
 			assertNotNull(resultlist);
 		}catch(Exception e)
 		{
@@ -116,8 +121,8 @@ public class TestStoreDao {
 		//fail("Not yet implemented");
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2012");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("小钱");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
@@ -138,8 +143,8 @@ public class TestStoreDao {
 		//fail("Not yet implemented");
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2013");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("孙大");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
@@ -162,8 +167,8 @@ public class TestStoreDao {
 		//fail("Not yet implemented");
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2014");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("李明");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
@@ -185,8 +190,8 @@ public class TestStoreDao {
 		//fail("Not yet implemented");
 		StorePO storepo1=new StorePO();
 		storepo1.setStorenum("2014");
-		storepo1.setStorename("���ʲֿ�");
-		storepo1.setLinkman("С��");
+		storepo1.setStorename("高邮仓库");
+		storepo1.setLinkman("二旺");
 		storepo1.setTele("1759307901");
 		storepo1.setStoragevolume("800");
 		
@@ -196,10 +201,10 @@ public class TestStoreDao {
 		{
 			Long id1=storedao.newStore(storepo1);
 			storepo2=storedao.findAStore(id1);
-			storepo2.setLinkman("С��");
+			storepo2.setLinkman("小天");
 			storedao.updateStore(storepo2);
 			storepo3=storedao.findAStore(id1);
-			assertEquals("С��",storepo3.getLinkman());
+			assertEquals("小天",storepo3.getLinkman());
 			
 		}catch(Exception e)
 		{
