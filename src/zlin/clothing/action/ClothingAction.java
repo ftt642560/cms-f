@@ -12,7 +12,7 @@ import zlin.clothing.service.*;
 import zlin.clothing.vo.PageBean;
 
 public class ClothingAction extends ActionSupport{
-private String huangjinhao = "shuaiguo";
+
 	private ClothingService clothingservice;
 	private ArrayList clothinglist;//货号列表
 	
